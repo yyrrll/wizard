@@ -1,0 +1,77 @@
+; Motivation: 
+;      build intuition of cons and list operations on lists ? 
+;      notice confusion relating outer-inner ("tree" vs "nested"!) to down-up, left-right,
+;          eg, how to visualize structures, and translate visualizations to code / discusssion
+
+;          note that even outer-inner is confusing
+;              when discussing nesting, similar to Russian dolls, the first object is "outer", it is nesting, it contains the nested
+;              when visualizing a tree, the initial object is the trunk, and each branch is "nested" -- the analogized "movement" toward the nested object is out, away from the trunk, toward the leaves / extremities
+
+;      think about nested list/sequence traversal as 
+;           outer      -   inner
+;              when a list is nested within others, those containing / nesting lists are "outer"
+;          containing  -   contained
+;          bottom      -   up
+;                  for formatted car|cdr operations --
+;                      bottom-most operation is first executed, and takes the initial (fully nesting) object; the outermost object
+;          right   -   left
+;                  left most executed last, on/taking innermost; rightmost executed first, on/taking outermost object
+;                  we can think of a|d notation as a reduction of (formatted) car|cdr sequences, from many lines to one -- see below
+
+;      what is the most convenient way to visualize / think of / understand / plan out these sequences?
+;          tree-like -- up-down, using left-right to distinguish items in same sequence
+;          box-and-pointer-- down - right
+;              paths descending into nested sequences move down or right
+
+;          code analogy?
+;              car is down in box-and-pointer
+;              cdr is right
+
+;              each operation de-references (yes?) a pointer; ie, replaces the pointer with the object pointed to
+
+;          in tree
+;              car is down to left
+;              cdr is down to right
+
+;              each operation indicates a branch of the current tree / subtree, choosing left or right 
+;                   moves "down" the inverted tree, ie more through a plant tree's root system than its branches
+;                  moves toward "outer" extremities from trunk
+;                  moves toward "inner" objects within nesting
+
+
+; Right - Left Representation of Outer - Inner Unpacking
+; 
+; The operation sequence
+; 
+; (car
+;     (cdr
+;         (cdr x)))   
+; 
+; reduces to 
+; 
+; (a
+;  (d
+;   ( dr x)))   
+; 
+;     (substituing a|d for car|cdr)
+; 
+; and then to
+; 
+;     (caddr x)
+; 
+; Here all the a|d "operations" hold the same (relative) column, but the separating newlines are removed.
+; 
+
+;   take note:
+
+;  The ordering of car|cdr operations goes up nesting levels from inner to outer
+;      the first / topmost / leftmost car operation in the displayed code is executed last, and takes the last, most deeply nested element
+;      the last / bottom most / rightmost operation is executed first, against the initial, most nesting object
+
+;  these car|cdr sequences must be "read" / decomposed in reverse order of reading
+
+
+;              in #3, first cdr executed -- bottom-most, right-most -- strips off first outer layer
+;      notice that (list) returns an object ending in nil / '(); cons does not
+
+;  Nota Bene: racket display of lists is less cluttered, but sicp display is better reflection of underlying data structures

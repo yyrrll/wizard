@@ -1,0 +1,15 @@
+;   alternatives
+; bill - ;   bill the lizard:
+; bill - ;       http://www.billthelizard.com/2012/04/sicp-256-258-symbolic-differentiation.html
+; bill - 
+; bill - (define (augend s)
+; bill -   (if (null? (cdddr s))
+; bill -         (caddr s)
+; bill -         (cons '+ (cddr s))))
+
+; also - ; also works:
+; also - (define (augend s)
+; also -     (if (= 1 (length (cddr s)))
+; also -         (caddr s)
+; also -         (cons '+ (cddr s))))
+; also -         

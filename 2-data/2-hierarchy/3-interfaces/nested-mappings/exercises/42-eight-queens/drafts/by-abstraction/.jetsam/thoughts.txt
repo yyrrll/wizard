@@ -1,0 +1,212 @@
+K = 1
+
+    Queen at a1
+    "board" is 1 column by 1 row
+
+    Queens at
+    
+        Qa1
+            (1 1)
+
+
+
+K = 2
+    
+    Add Qb3
+
+    Queens at
+
+        Qb3
+            (2 3)
+        Qa1
+            (1 1)
+
+    "board" is
+                            by
+        3                           3
+            columns                     rows
+                files                       ranks
+                    letters                     numbers
+                
+     
+    Qb3 "safe"
+
+    -   not on file or rank move
+        -   file differs from file of Qa1 -- a vs b
+        -   rank differs from rank of Qa1 -- 3 vs 1
+    -   not on a diagonal
+        Qa1 diagonal
+            a1 --> (1 1)
+                diagonal consists of 
+                    (2 2)
+                    (3 3)
+                    (4 4)
+                    etc
+
+        Qb3 diagonal
+            bc --> (2 3)
+                diagonal consists of
+                    (3 4)
+                    (4 5)
+
+                    y = mx + b
+                    
+                    for a1
+                        m = rise / run = (3 - 1) / (3 -1) = 2 / 2 = 1
+                        b = y-intercept = 0
+
+                        go four files over
+                            x = 1 + 4 = 5
+                            y = 1 * 5 + 0 = 5
+
+                    for b3
+                        m = (4 - 3) / (5 - 4) = 1
+                        b = 2
+
+                        go four files over from b3 and up
+                            x = 2 + 4 = 6
+                            y = 1 * 6 + 1 = 7
+
+                            -- > (6 7)
+                            -- > f7
+
+                         go one file back and down
+                            x = 2 - 1 = 1
+                            y = 1 * 1 + 1 = 2
+
+                            --> (1 2)
+                            --> a2
+
+                         must also do negative 
+                            can go from b3 to a4
+                                        (2 3) (1 4)
+                            x = (2 - 1) / (3 - 4) = -1
+                            b = 5
+
+                         go one left and up
+                            x = 2 - 1 = 1
+                            y = -1 * 1 + 5 = 4
+
+                            --> (1 4
+
+                         go one right and down
+                            x = 2 + 1 = 3
+                            y = -1 * 3 + 5 = 2
+
+                            --> (3, 2)
+                                --> c2
+
+                                nb:
+
+                                    left - right -- change file
+
+                                        "left" -- subtract from x
+                                        "right" -- add to x
+
+
+                                    "up" slope 
+                                        toward h8 or a1
+                                        uses positive slope parameters 
+                                        get y from x
+                                            rank from file
+
+                                    "down" slope
+                                        toward a8 or h1
+                                        uses negative slope parameters
+                                        get y from x
+                                            rank from file
+
+
+            "safe"
+            -   not on file with queen
+            -   not on rank with queen
+            -   not on diagonal with queen
+
+            evaluate -- equations
+                file and rank with coordinates
+                diagonals with parameters
+                    diagonals expressed as y-intercepts and slopes
+                        if two diagonals share a slope and intercept, they are the same (yes?)
+
+            evaluate -- sets
+                calculate a queen's coverage as the set of squares she can reach
+                -   all squares sharing file
+                -   all squares sharing rank
+                -   all squares on two diagonals through position
+                    -   that is, all solutions for the square's diagonals
+
+diagonals
+-   there 15 "down" diagonals
+    -   one through a8 - b7, a7 - b6, a6 - b5 . . . a1; and then through b1 , c1, d1 . . . 
+
+    16 diagonals:
+
+        a1 - b2
+            a2 - b1
+            a2 - b3
+                . . . 
+                a6 - b5
+                a6 - b7
+            a7 - b6
+            a7 - b8
+        a8 - b7
+
+        b1 - a2 (duplicate)
+        b1 - c2
+
+            c1 - b2 - a3 (duplicate)
+            c1 - d2
+
+            g1 - f2 - - - a7 (duplicate)
+            g1 - h2
+        h1 - g2 ---- a8 (duplicate)
+
+
+-   there 15 "down" diagonals
+    -   one through a1, a2 - b1, a3 - b2 . . . and then through b1, c1, d1 . . . 
+
+
+
+number of solutions:
+
+size 1
+
+    board is 1x8
+    can have only 1 queen
+        because second must be on same file as first
+    8 solutions -- 8 squares for 1 queen
+
+size 2
+
+    board is 2x8
+    2 queens
+        one file for each
+        third would have to be on same file as one or the other
+    
+    solutions
+        Qa1
+            6 solutions
+            Qb3 - Qb8 
+
+        Qa2
+            5 solutions
+            Qb4 - Qb8
+                fewer than a1 bc at a2 first excludes 3 squares -- b1 ("down" diagonal), b2 (rank) , b3 ("up" diagonal)
+
+        Qa3 - Qa7
+            5 solutions
+            same as Qa2
+                change in first queen position close one square, opens another
+                    proof?
+
+                so, Qa2 - Qa7 --> 6 cases, each with five solutions
+
+        Qa8
+            6 solutions
+            same as Qa1
+
+
+        (2 * 6) + (6 * 5) = 42
+
+echo "((2 * 6) + (6 * 5))" | bc
+42

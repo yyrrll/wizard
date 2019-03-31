@@ -1,0 +1,48 @@
+shell> racket
+,enter take-5-unconsolidated.rkt
+"take-5-unconsolidated.rkt"> ,trace deep-reverse
+"take-5-unconsolidated.rkt"> ,trace append-debug
+"take-5-unconsolidated.rkt"> (deep-reverse x)
+>(deep-reverse '(7 8 9))
+(7 8 9)
+> (deep-reverse '(8 9))
+(8 9)
+> >(deep-reverse '(9))
+(9)
+> > (deep-reverse 9)
+9
+< < 9
+> >(append-debug '(9) '())
+< <'(9)
+> >(deep-reverse 8)
+8
+< <8
+> (append-debug '(9) 8)
+< '(9 . 8)
+> (deep-reverse 7)
+7
+< 7
+>(append-debug '(9 . 8) 7)
+; append: contract violation
+;   expected: list?
+;   given: '(9 . 8)
+; [,bt for context]
+"take-5-unconsolidated.rkt"> ,bt
+; append: contract violation
+;   expected: list?
+;   given: '(9 . 8)
+;   context...:
+;    /usr/local/Cellar/minimal-racket/6.10/share/racket/collects/racket/trace.rkt:220:2: do-traced
+;    /usr/local/Cellar/minimal-racket/6.10/share/racket/pkgs/xrepl-lib/xrepl/xrepl.rkt:1446:0
+;    /usr/local/Cellar/minimal-racket/6.10/share/racket/collects/racket/private/misc.rkt:88:7
+"take-5-unconsolidated.rkt">
+
+
+COMMENT:
+
+
+note that << append-debug >> is passed '(9 . 8) 7)
+- errs because << append >> must have a list, rather than a pair or integer, as its first argument
+
+- '(9 . 8) is returned by deep-reverse, when it appends the d-r of 8 (an integer) to the d-r of '(9) (which is '(9)
+

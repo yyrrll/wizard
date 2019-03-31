@@ -1,0 +1,80 @@
+2.3.3 Example: Representing Sets
+
+choice of representation is not straightforward
+-   several possibilities with significant differences among them
+
+"set"
+
+    informally, "simply a collection of distinct objects"
+
+    more precise definition by data abstraction, by specifying operations used on sets
+
+        element-of-set? 
+            predicate that determines whether a given element is a member of a set
+        
+        adjoin-set 
+            takes an object and a set as arguments and returns a set that
+            contains the elements of the original set and also the adjoined
+            element
+            
+        union-set 
+            computes the union of two sets, which is the set containing each
+            element that appears in either argument
+            
+        intersection-set 
+            computes the intersection of two sets, which is the set containing
+            only elements that appear in both arguments. 
+    
+
+        still more formally:
+
+            f we want to be more formal, we can specify ``consistent with the interpretations given above'' to mean that the operations satisfy a collection of rules such as these:
+
+                For any set S and any object x, (element-of-set? x (adjoin-set x S)) is true (informally: ``Adjoining an object to a set produces a set that contains the object'').
+
+                    For any sets S and T and any object x, (element-of-set? x (union-set S T)) is equal to (or (element-of-set? x S) (element-of-set? x T)) (informally: ``The elements of (union S T) are the elements that are in S or in T'').
+
+                        For any object x, (element-of-set? x '()) is false (informally: ``No object is an element of the empty set''). 
+        
+
+Sets as unordered lists
+
+    (see implementation in unordered-lists/ )
+    - defines element-of-set
+    - defines adjoin-set using element-of-set to check set for item, add to set if false
+    - intersection using element-of-set to check each item in first set for inclusion in second
+
+    efficiency consideration when designing representation
+    - all use element-of-set?, so speed of all impacted by its speed
+    - may have to check all items in set
+        (worst case: element not in set)
+        if set has n elements, element-of-set? might take up to n steps
+        -   number of steps required grows as Θ(n)
+
+        -   steps required by adjoin-set, same
+        -   intersection-set -- number of steps grows as the product of the sets involved -- Θ(n^2) for two sets of size n
+            [ because called on set2 for each element in set1
+                and, each call on set2 is Θ(n) 
+                -- so, Θ(n) calls on set2
+                -- each of which is Θ(n) in its own right
+
+
+(vi -- digraphs
+
+    see list:
+
+        :digraphs
+            gives unicode (decimal) and vim digraph code
+
+    enter digraph
+        insert mode
+            C-k<<digraph code>
+
+    theta -- big O -- Θ -- code is H*
+        C-kH*
+
+    http://www.alecjacobson.com/weblog/?p=443
+)
+                
+    
+

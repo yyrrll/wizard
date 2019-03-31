@@ -1,0 +1,29 @@
+
+how trace works
+
+thorin:draft gordon$ racket
+Welcome to Racket v6.10.
+> ,enter take-4-works.rkt
+"take-4-works.rkt"> (define x '(7 8 9))
+"take-4-works.rkt"> x
+'(7 8 9)
+"take-4-works.rkt"> (deep-reverse x)
+'(9 8 7)
+"take-4-works.rkt"> ,trace deep-reverse
+"take-4-works.rkt"> (deep-reverse x)
+>(deep-reverse '(7 8 9))
+> (deep-reverse '(8 9))
+> >(deep-reverse '(9))
+> > (deep-reverse '())
+< < '()
+> > (deep-reverse 9)
+< < 9
+< <'(9)
+> >(deep-reverse 8)
+< <8
+< '(9 8)
+> (deep-reverse 7)
+< 7
+<'(9 8 7)
+'(9 8 7)
+"take-4-works.rkt">

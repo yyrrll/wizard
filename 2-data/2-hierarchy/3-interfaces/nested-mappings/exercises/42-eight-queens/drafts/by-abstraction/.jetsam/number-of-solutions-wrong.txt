@@ -1,0 +1,36 @@
+number of solutions:
+
+NO --
+    assumes board at "size" is square
+        recursive plan works on "columns" (files)
+        "size 1" has 1 x 8 squares -- all squares on file a
+
+    2x2 board
+        one queen only
+        4 solutions (each square is solution)
+
+    3x3
+        2 queens only
+
+        14 solutions
+        - first queen on:
+            rank 1: 6
+                for each file a, b, c -- two locations for second queen
+            rank 2: 4
+                two second queen spots for files a, c; none for b
+            rank 3: 6
+                same as 1
+
+        estimate 12 solutions
+        - permutations of queen on rank 1: 3        -- WRONG
+        CHECK:
+        - all placements on other ranks are emulations of permutations of rank 1 on rotated board
+            or, permutations on queen on rank 3, files a and c
+            because each solution doing permutations on queen on another rank involve queen on that "base" rank
+            -   NO -- if Qa2, solution at Qc3, or Qc1 -- former would not be in the "base queen" permutations
+
+        - so total solutions are 3 * 4
+
+        BUT
+            overlaps?
+

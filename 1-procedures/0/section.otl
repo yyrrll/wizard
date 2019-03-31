@@ -1,0 +1,50 @@
+1-0: Programming in Lisp
+
+computational process
+data
+- mentioned, not defined
+
+'program'
+
+    'evolution of a process . . . directed by a pattern of rules'
+
+programming languages
+    ? language for describing processes ?
+
+'bugs'
+'glitches'
+
+    'small errors in programs'
+
+debug
+
+
+Lisp
+
+    'invented as a formalism for reasoning about the use of certain kinds of
+    logical expressions, called recursion equations, as a model for
+    computation'
+
+        name acronym for LISt Processing
+
+'recursion equations'
+
+    'certain kinds of logical expressions'
+
+'LISP interpreter'
+
+    'machine that carries out processes described in the Lisp language'
+
+    
+'procedures'
+
+    'Lisp descriptions of processes'
+
+    - can themselves be represented and manipulated as data
+    - blurs distinction between pssive data and active processes
+    - handling procedures as data supports powerful program design techniques
+
+
+ability to represent procedures as data makes Lisp excellent for writing
+programs that manipulate other programs as data, such as interpreters and
+compilers

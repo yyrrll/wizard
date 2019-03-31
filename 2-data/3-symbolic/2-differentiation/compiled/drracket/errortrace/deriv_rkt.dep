@@ -1,0 +1,1 @@
+("6.11" ("879578e94902e28439597396ed35de17df3c3aca" . "a33b4a3cd872a2e7aa7a9c2057e4a3d87a279144") #"/home/gordon/general/study/sicp/book/2-data/3-symbolic/2-differentiation/interface.rkt" (collects #"errortrace" #"errortrace-key.rkt") (collects #"racket" #"main.rkt") (collects #"racket" #"runtime-config.rkt"))

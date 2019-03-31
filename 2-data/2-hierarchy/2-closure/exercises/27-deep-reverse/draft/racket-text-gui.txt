@@ -1,0 +1,56 @@
+Using Racket / DrRacket from the command line
+
+Invoke:
+
+    racket
+
+Load a file:
+
+    ,enter [file.rkt]
+
+        this reads the file into the context
+        - there is also a load command, don't know what it does
+
+
+Edit a file:
+
+    ,edit [file.rkt]
+
+        unless there is an $EDITOR variable (in the shell environment, yes?), the text interface will attempt to invoke drracket and edit there
+
+            if there are problems with the file, gets errors and pauses
+
+            NB: drracket not loading files for me here
+
+
+Get help:
+
+    ,help
+
+
+        has commands such as:
+
+            trace
+            errortrace
+            profile
+            shell (run a shell command)
+
+Trace
+
+    ,trace function-name
+
+        when the function is called, environment prints each call and the arguments passed to it
+            does not seem to provide local context for errors
+            - reports "expected: list given '(9 . *)" -- happening in an append call -- but doesn't give detail on which lines generated the offending object
+                - OR DOES IT?
+
+To exit:
+
+    ,exit
+
+        or
+
+    (exit)
+
+
+

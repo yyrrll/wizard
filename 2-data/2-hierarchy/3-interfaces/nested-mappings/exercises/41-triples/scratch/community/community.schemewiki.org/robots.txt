@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /?c=*
+Disallow: /?*c=*
+Disallow: /cgi-bin/scheme.cgi?*c=*
+Crawl-delay: 1

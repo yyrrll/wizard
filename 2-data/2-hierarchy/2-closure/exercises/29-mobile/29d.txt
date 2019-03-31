@@ -1,0 +1,9 @@
+If the constructors make-mobile and make-branch are revised to use << cons >> rather than list, the only change to the exercise code is to the selector right-branch, which is revised to remove the encasing << car >> call.
+
+This is because the constructor change means the constructors return pairs, rather than lists.  The cdr of a pair is the second item of the pair.  The cdr of a list, even one of only two elements, is a list -- and if that list is of only one element, car must be called on that list to get that element.
+
+This is demonstrated by the code in list-to-cons/, which makes these changes.  Tests are broken for test-interface.rkt and test-trap-and-tail.rkt, which are expecting lists rather than than pairs.
+
+But the tests for test-procedures.rkt are not broken.
+
+(however, the tests for interface do vary in more than form.  is more extensive testing needed?)

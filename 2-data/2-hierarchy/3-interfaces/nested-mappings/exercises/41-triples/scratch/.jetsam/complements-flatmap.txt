@@ -1,0 +1,18 @@
+;   fails because get-complement-pair takes two arguments, flatmap passing 1
+;   - want to call over a range of integers, but must also provide a << whole >> argument
+;   - solution: invoke flatmap by wrapping in a lambda that takes the integer from the range, calls with that and some value for << whole >> 
+;-bad-usage-(flatmap
+;-bad-usage-  get-complement-pair
+;-bad-usage-  (enumerate-interval 1 8))
+
+(flatmap
+  (lambda
+    (i)
+    (list (get-complement-pair i 8))
+        ; '((1 7) (2 6) (3 5) () () () () ())
+    ; (get-complement-pair i 8)
+      ;   '(1 7 2 6 3 5)
+      ;   pairs being collapsed by flatmap
+    )
+  (enumerate-interval 1 8))
+

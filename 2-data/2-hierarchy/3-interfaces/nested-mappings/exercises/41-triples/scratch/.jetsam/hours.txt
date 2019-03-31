@@ -1,0 +1,36 @@
+; Sun Jul 29 07:46:08 EDT 2018
+; get list of "pairs" of complements for << whole >>, the lesser of each equal to or greater than n
+; ugh -- flatmap? accumulate and map? not grokking the primitives here
+; Sun Jul 29 08:02:53 EDT 2018
+
+; Sun Jul 29 09:25:00 EDT 2018
+; Sun Jul 29 09:40:02 EDT 2018
+
+; Sun Jul 29 10:26:32 EDT 2018
+; Sun Jul 29 10:43:59 EDT 2018
+;   figure out filtering complements, infinite loop problem
+
+
+; Sun Jul 29 10:43:59 EDT 2018
+; Sun Jul 29 10:49:25 EDT 2018
+;   consolidate
+
+
+; approaches
+;   1. get pairs, filter for summed
+;   2. go over sequence, getting summed less item
+
+
+; Sun Jul 29 10:49:31 EDT 2018
+; Sun Jul 29 11:02:19 EDT 2018
+;   look at using flatmap
+
+
+; Sun Jul 29 11:02:19 EDT 2018
+; Sun Jul 29 11:39:47 EDT 2018
+;       flatmap extension, messing with when and void
+
+; Sun Jul 29 11:42:36 EDT 2018
+; Sun Jul 29 11:50:58 EDT 2018
+;   try permutations pattern
+

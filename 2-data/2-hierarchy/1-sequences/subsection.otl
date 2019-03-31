@@ -1,0 +1,141 @@
+2.2.1  Representing Sequences
+    p. 134
+
+"sequence"
+
+    an ordered collection of data objects
+    many ways to do so using pairs
+
+"list"
+
+    a sequence of pairs, formed by nested << cons >>
+
+    [ or:
+        
+        a sequence of pairs, each containing first an item and second a pair
+        containing the rest of the sequence (?yes?)
+
+        - nested sequences
+
+    ]
+
+    car gets first item
+    cdr gets sublist containing all but first item
+
+    from notes:
+
+        "a chain of pairs terminated by the end-of-list marker"
+        
+        list structure
+
+            "refers to any data structure made out of pairs, not just to list"
+
+<< list >>
+
+    Lisp primitive for creating lists as described above
+
+    take care:
+
+        << (list 1 2 3 4) >>
+            
+            expression creating a list
+
+        << list ( 1 2 3 4) >>
+
+            result obtained by that expression
+            
+            - evaluating this raises error -- interpreter tries to apply
+              operator "1" to arguments 2, 3, 4
+
+<< nil >> (value of)
+
+    can be thought of as a sequence of no elements
+
+    "empty list"
+
+    used to terminate chain of pairs
+
+    notes: beware Lisp community arguments whether << nil >> should be name or
+    symbol
+
+        nb: in Racket, << nil >> not recognized unless << #lang sicp >>
+            -- use << '() >> instead?
+
+
+List operations
+
+
+<< null? >>
+
+    primitive predicate
+
+    - returns true / false?  tests whether its argument is the empty list
+
+        TODO: what if argument is not a list at all?
+
+
+"recursive plan" -- pattern
+
+    reduction step
+
+        ? construction of return value?
+            
+            TODO: defined in chapter 1? find, document
+        
+    base case
+
+        condition of arguments that ends recursive calls
+
+            TODO: defined in chapter 1? find, document
+
+<< append >>
+
+    "takes two two lists as arguments and combines their elements to make a new list"
+
+            # TODO -- DRY with examples
+        (define squares 
+            (list 1 4 9 16 25))
+
+        (define odds
+            (list 1 3 5 7))
+    
+        (append squares odds)
+        (1 4 9 16 25 1 3 5 7)
+
+        (append odds squares)
+        (1 3 5 7 1 4 9 16 25)
+
+
+    
+..... unoutlined material ..... ???
+    TODO -- check
+
+
+
+"dotted tail notation" -- lisp
+
+    Exercise 20
+
+    in a procedure definition, a dot before the the last parameter name
+    specifies that all arguments not assigned to parameters before that last
+    parameter will be assigned to that last parameter as a list 
+
+
+Mapping over lists:
+
+<< map >>
+
+    "takes as arguments a procedure of one argument and a list, and returns a
+    list of the results produced by applying the procedure to each element in
+    the list"
+
+        note: Scheme provides a more general << map >> that takes a procedure
+        of n arguments and n lists; each list provides a value for each of the
+        arguments
+
+    - "establishes a higher level of abstraction in dealing with lists"
+    - "map helps establish an abstraction barrier that isolates the
+      implementation of procedures that transform lists from the details of how
+      the elements of the list are extracted and combined" 
+        - we think about the process differently
+    - gives flexibility to vary low-level details of sequence implementations

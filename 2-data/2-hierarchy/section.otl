@@ -1,0 +1,27 @@
+2.2  Hierarchical Data and the Closure Property
+
+"closure property"
+
+    "In general, an operation for combining data objects satisfies the closure
+    property if the results of combining things with that operation can
+    themselves be combined using the same operation"
+
+    "comes from abstract algebra, where a set of elements is said to be closed
+    under an operation if applying the operation to elements in the set
+    produces an element that is again an element of the set"
+
+    confusingly, "closure" also used in Lisp for implementation technique
+    representing procedures with free variables
+
+    - not used this way in book
+
+    key to combination power because it permits _hierarchical_ structures
+
+
+2.2.1  Representing Sequences
+
+2.2.2 Hierarchical Structures
+
+2.2.3 Sequences as Conventional Interfaces
+
+2.2.4 Example: A Picture Language

@@ -1,0 +1,182 @@
+1.2 Procedures and the Processes They Generate
+
+"procedure"
+
+    pattern for the local evolution of a computational process; specifies how
+    each stage of the process is built upon the previous stage.
+
+
+1.2.1 Linear Recursion
+
+factorial function
+
+    n! = n * (n - 1) * (n - 2) ... * 3 * 2 * 1
+
+    many ways to calculate
+        one:
+    
+            observe that n! = n * (n - 1)! 
+                (for positive integer n)
+    
+                stipulate that 1! equal to 1
+    
+                thus compute n! by computing (n - 1)!
+    
+                leads to procedure:
+    
+                    (define (factorial n)
+                      (if (= n 1)
+                          1
+                          (* n (factorial (- n 1)))))
+    
+    
+                    calls itself . . . .
+    
+        another:
+
+            multiply 1 by 2, multiply result by 3, then by 4, until we reach n
+
+            maintain:
+                running product of multiplications
+                counter, from 1 to n
+
+            computation changes counter and product "simultaneously change step to the next according to the rule":
+
+                product <- counter * product
+                counter < counter + 1
+
+                (nb: "simultaneously" seems to mean "within one step", and admits changes at different moments within that step)
+
+            procedure:
+
+                (define (factorial n) 
+                  (fact-iter 1 1 n))
+                
+                (define (fact-iter product counter max-count)
+                  (if (> counter max-count)
+                    product
+                    (fact-iter (* counter product)
+                               (+ counter 1)
+                               max-count)))
+
+
+"recursive process"
+
+    "characterized by a chain of deferred operations"
+    - nb: example rather than definition
+
+    requires interpreter to keep track of deferred operations
+    for n!, the length of chain to track grows linearly with n
+        (eg, is proportional to n)
+        "linear recursive process"
+
+    -   has "hidden information" maintained by the interpreter
+            the longer the chain, the more information must be maintained
+
+
+"iterative process"
+    
+    a process "whose state can be summarized by a fixed number of state variables, together with a fixed rule that describes how the state variables should be updated"
+    -   plus an (optional) end test for terminating the process
+
+    process does not grow and shrink
+    at each step, track values of product, counter and max-count (the target value of n)
+
+    for n!, the number of steps grows linearly with n
+
+        "linear iterative process"
+
+    variables always summarize state of process at any point
+
+
+do not confuse "recursive process" and "recursive procedure"
+-   recursive procedure refers to syntactic fact that defined procedure refers to itself (directly or indirectly)
+-   recursive process (or "linearly recursive") refers to how the process evolves -- not the syntax of the process
+    -   fact-iter refers to itself, and so is a recursive procedure, but does not describe a recursive process
+
+
+"tail-recursive"
+
+    an implementation that executes an interative process in a constant space, even if that iterative process is described by a recursive procedure
+
+
+1.2.2 Tree Recursion
+
+sequence of Fibonacci numbers:
+
+    0, 1, 1, 2, 3, 5, 8 21, ....
+
+    defined by this rule:
+
+        Fib(n) = |  0                           if n = 0
+                 |  1                           if n = 1
+                 |  Fib(n - 1) + Fib(n - 2)     otherwise
+
+        (nb: also definable as 0, 1, with each following equal to the sum of the values one and two places before it
+             therefore, the next value 1 -- the sum of the value one place before it (1) and the value two places before it
+                        the value after that is 2 -- sum of one place before (1) and two places before (also 1))
+
+    recursive procedure for calculating Fibonacci numbers:
+
+        (define (fib n)
+          (cond ((= n 0) 0)
+                ((= n 1) 1)
+                (else (+ (fib (- n 1))
+                         (fib (- n 2))))))
+
+        the evolved process of this computation looks like a tree
+            branches split in two at each level (save the bottom)
+                (because the procedure calls itself twice on each invocation)
+
+        terrible way to compute Fibonacci, redundant computation
+            can show the procedure computers (fib 1) or (fib 0) -- number of leaves in the tree -- is precisely Fib(n+1)
+1.2.3 Orders of Growth
+
+            value of Fib(n) grows exponentially with n
+
+                Fib(n) is integer closest to   φ * n/square-root(5)
+
+                    where φ = (1 + square-root(5)) / 2
+
+                    is the "golden ratio", satisfies equation
+
+                    φ ^ 2 = φ + 1
+
+                    see Exercise 1.13
+
+            i.e., process number of steps grows exponentially with the input
+                space required only grows linearly with input (need only track nodes above us at any point in computation)
+
+            in general, for tree-recursive process
+                steps proportional to number of nodes in tree
+                space required proportional to the maximum depth of the tree
+                    (nb: because at any given point in the computation, process is down one particular branch, and must only track the nodes related to that particular branch?)
+
+
+    iterative process:
+        
+        use integers a and b, intialized to Fib(1) = 1 and Fib(0) = ), and repeatedly apply simultaneous transformations:
+
+            a <- a + b
+            b <- a
+
+        not hard to show that, after applying this transformation n times, a and b will respectively equal Fib(n + 1) and Fib(n).
+        
+        procedure
+
+            (define (fib n) 
+              (fib-iter 1 0 n))
+                  
+            (define (fib-iter a b count)
+              (if (= count 0)
+                b
+                  (fib-iter (+ a b) a (- count 1))))
+
+
+Example: Counting Change
+
+
+
+1.2.4 Exponentiation
+
+1.2.5 Greatest Common Divisors

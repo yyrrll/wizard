@@ -1,0 +1,62 @@
+; =====================================
+
+; -------------------------------------
+;   gcp-filtered 
+
+;   working name
+;   strategy: generate list of "pairs", filter on criteria
+;   - costs more than algorithm above -- higher big O
+;   - faster to develop
+
+
+(define (gcp-filtered n whole)
+  (filter
+    (lambda (pr)
+      (< (car pr) (cadr pr))    ; (cadr pr) --> (car (cdr pr)))
+      )
+    (flatmap
+      (lambda (i)
+        (list (list i (- whole i))))
+      (enumerate-interval n whole)
+      )
+    )
+  )
+
+
+;   -------------------------------------
+;   test
+
+;   TODO
+;   -- tests pasted from above
+;   -- any way to re-use the test cases, passing in a different function to be tested?
+
+(check-equal?
+  (gcp-filtered 1 8)
+  '((1 7)
+    (2 6)
+    (3 5)))
+
+(check-equal?
+  (gcp-filtered 2 8)
+  '(
+    (2 6)
+    (3 5)))
+
+(check-equal?
+  (gcp-filtered 1 9)
+  '((1 8)
+    (2 7)
+    (3 6)
+    (4 5)))
+
+(check-equal?
+  (gcp-filtered 2 9)
+  '(
+    (2 7)
+    (3 6)
+    (4 5)))
+
+; -------------------------------------
+
+
+; =====================================

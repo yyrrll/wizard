@@ -1,0 +1,13 @@
+must implement order of operations
+
+code getting excessively complicated 
+-- not coding at right levels / representations
+-- solving problems with hacks rather than rethinking core representation
+
+
+interface failing -- returning mix of postfix and infix
+infix-deriv failing on error
+
+code becoming example of coding by hacking / solving local problems rather than
+thinking through the interface and representations
+

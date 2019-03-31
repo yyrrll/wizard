@@ -1,0 +1,59 @@
+--2018-07-29 18:40:20--  http://community.schemewiki.org/?sicp-ex-2.41
+Resolving community.schemewiki.org... 54.164.84.2
+Connecting to community.schemewiki.org|54.164.84.2|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘community.schemewiki.org/index.html?sicp-ex-2.41’
+
+     0K .......... .......... .......... .......... ..........  913K
+    50K                                                        2.83K=0.05s
+
+2018-07-29 18:40:20 (916 KB/s) - ‘community.schemewiki.org/index.html?sicp-ex-2.41’ saved [51345]
+
+Loading robots.txt; please ignore errors.
+--2018-07-29 18:40:20--  http://community.schemewiki.org/robots.txt
+Reusing existing connection to community.schemewiki.org:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 97 [text/plain]
+Saving to: ‘community.schemewiki.org/robots.txt’
+
+     0K                                                       100% 11.6M=0s
+
+2018-07-29 18:40:20 (11.6 MB/s) - ‘community.schemewiki.org/robots.txt’ saved [97/97]
+
+--2018-07-29 18:40:20--  http://community.schemewiki.org/css/default.css
+Reusing existing connection to community.schemewiki.org:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 12971 (13K) [text/css]
+Saving to: ‘community.schemewiki.org/css/default.css’
+
+     0K .......... ..                                         100% 1.63M=0.008s
+
+2018-07-29 18:40:20 (1.63 MB/s) - ‘community.schemewiki.org/css/default.css’ saved [12971/12971]
+
+--2018-07-29 18:40:20--  http://community.schemewiki.org/images/left-paren.png
+Reusing existing connection to community.schemewiki.org:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 3915 (3.8K) [image/png]
+Saving to: ‘community.schemewiki.org/images/left-paren.png’
+
+     0K ...                                                   100%  635K=0.006s
+
+2018-07-29 18:40:20 (635 KB/s) - ‘community.schemewiki.org/images/left-paren.png’ saved [3915/3915]
+
+--2018-07-29 18:40:20--  http://community.schemewiki.org/images/right-paren.png
+Reusing existing connection to community.schemewiki.org:80.
+HTTP request sent, awaiting response... 200 OK
+Length: 2454 (2.4K) [image/png]
+Saving to: ‘community.schemewiki.org/images/right-paren.png’
+
+     0K ..                                                    100%  260M=0s
+
+2018-07-29 18:40:20 (260 MB/s) - ‘community.schemewiki.org/images/right-paren.png’ saved [2454/2454]
+
+FINISHED --2018-07-29 18:40:20--
+Total wall clock time: 0.6s
+Downloaded: 5 files, 69K in 0.07s (1010 KB/s)
+Converting links in community.schemewiki.org/index.html?sicp-ex-2.41... 1-20
+Converting links in community.schemewiki.org/css/default.css... 2-0
+Converted links in 2 files in 0.003 seconds.

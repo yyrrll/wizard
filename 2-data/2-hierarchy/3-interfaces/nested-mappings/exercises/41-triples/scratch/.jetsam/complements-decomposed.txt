@@ -1,0 +1,26 @@
+(define (get-complement-pairs-d1 n whole)
+  (map
+    (lambda
+      (i)
+      (get-complement-pair i whole))
+    (enumerate-interval n whole)
+        ; use (/ whole 2) as end ?
+        )
+  )
+
+(check-equal?
+  (get-complement-pairs-d1 1 8)
+  '((1 7)
+    (2 6)
+    (3 5)
+    () () () () ()
+    ))
+
+
+(define (get-complement-pairs-old n whole)
+  (filter
+    not-null?
+    (get-complement-pairs-d1 n whole)
+    )
+  )
+

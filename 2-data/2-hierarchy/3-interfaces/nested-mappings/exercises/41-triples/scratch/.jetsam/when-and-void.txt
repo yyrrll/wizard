@@ -1,0 +1,41 @@
+(define (return-nothing i whole)
+  (let
+    ((cmp (get-complement-pair i whole)))
+    (when (not (null? cmp))
+      cmp)
+    ))
+
+; document -- << when >>
+;   racket forbids one-armed if
+;       use << when >> for this
+
+;   https://stackoverflow.com/questions/10863192/why-is-one-armed-if-missing-from-racket
+
+;   note that Scheme does allow one-armed if
+
+
+;   document learnings on void
+; document example of checking void return
+(check-equal?
+  (return-nothing 2 8)
+  '(2 6))
+
+(check-equal?
+  (return-nothing 5 8)
+  (void)) 
+
+
+;   appending void to a list does put the void in the list
+;-err-; don't know how to represent void in expected result
+;-err-(check-equal?
+;-err-    (list 1 2 (void) (void))
+;-err-    '(1 2 #void #void))
+;-err-    ; '(1 2 (void) (void)))
+;-err-    ;   reported actual:
+;-err-    ; '(1 2 #<void> #<void>))
+
+
+; void is not null
+(check-equal?
+    (null? (void))
+    #f)

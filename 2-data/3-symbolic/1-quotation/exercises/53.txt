@@ -1,0 +1,89 @@
+Exercise 2.53.  What would the interpreter print in response to evaluating each
+of the following expressions?
+
+
+(list 'a 'b 'c)
+
+(list (list 'george))
+(cdr '((x1 x2) (y1 y2)))
+
+(cadr '((x1 x2) (y1 y2)))
+(pair? (car '(a short list)))
+(memq 'red '((red shoes) (blue socks)))
+
+(memq 'red '(red shoes blue socks))
+
+
+
+(racket, #lang racket)
+
+
+(list 'a 'b 'c)
+
+    '(a b c)
+
+
+(list (list 'george))
+
+    '((george))
+
+
+
+(cdr '((x1 x2) (y1 y2)))
+
+    mine: (y1 y2)
+
+    interpreter: '((y1 y2))
+
+         because << cdr >> returns a list
+
+         - remaining elements of '((x1 x2) (y1 y2)) are the list '(y1 y2)
+         - cdr wraps this in a list
+         - car, which returns the first item, rather than the list of remaining items, gets a result similar to what I expected:
+
+            1 ]=> (car '((x1 x2) (y1 y2)))
+
+            ;Value 13: '(x1 x2)
+
+    REMEMBER:
+    - << car >> and << cdr >> are similar but do not return the same types
+    - << car >> returns an item
+    - << cdr >> returns a list of items
+
+
+(cadr '((x1 x2) (y1 y2)))
+
+    
+    mine: (y1 y2)
+
+        cadr same as
+            (car (cdr ...))
+                cdr applied first
+
+
+(pair? (car '(a short list)))
+
+    mine: #f
+        
+        car returns first element of list (a short string) -- which is 'a, and is not a pair
+            returns << a >> quoted -- why?
+                << '(a short list) >> is the _quote_ of the items in the list
+                but -- '(a b c) is "conventional printed representation for lists"
+
+    interpreter: #f
+
+        because << car >> returns an item -- again
+
+
+
+(memq 'red '((red shoes) (blue socks)))
+    
+    #f
+
+        '(red shoes) will not match 'red
+
+
+
+(memq 'red '(red shoes blue socks))
+
+    '(red shoes blue socks))

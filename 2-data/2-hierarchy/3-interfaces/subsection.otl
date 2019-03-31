@@ -1,0 +1,98 @@
+2.2.3 Sequences as Conventional Interfaces
+
+section introduces "conventional interfaces" -- design principle for
+working with data structures
+
+"Our ability to formulate analogous operations for working with compound
+data depends crucially on the style in which we manipulate our data
+structures."
+	"analogous" to program abstractions, implemented as higher-order
+	procedures
+
+example: comparison of sum-odd-squares to even-fib
+
+	on the surface, sum-odd-squares is very different from even-fib.
+	despite being structurally very different, "a more abstract
+	description of the two computations reveals a great deal of
+	similarity.
+
+	the first program:
+		- enumerates the leaves of a tree;
+		- filters them, selecting the odd ones;
+		- squares each of the selected ones; and
+		- accumulates the results using +, starting wiht 0.
+
+	the second program:
+		- enumerates the integers from 0 to n;
+		- computes the Fibonacci number for each integer;
+		- filters them, selecting the even ones; and
+		- accumulates the results using cons, starting with the empty list."
+
+
+	these processes can be conceived "in terms of signals passing through
+	a cascade of stages, each of which implements part of the program
+	plan"
+
+	"Unfortunately, the two procedure definitions above fail to exhibit
+	this signal-flow structure. . . . [The] procedures decompose the
+	computations in a different way, spreading the enumeration over the
+	program and mingling it with the map, the filter and the
+	accumulation." -	organizing to make signal-flow structure manifest
+	in the procedures would this would increase the conceptual clarify of
+	the code -	ie, using that structure makes it easier for the reader to
+	see what the code is doing
+
+"signal-flow structure"
+
+    concept of some processes operations
+
+    signals flowing through a cascade of stages, each implementing part of the
+    program plan
+
+
+"sequence operations"
+
+    represent communication among process stages as signals
+    organize / represent these signals into lists
+    operations on those lists pass siganls to next stage
+
+    "filter procedure"
+    
+        takes a list and a predicate, returns a list of items satisfying the
+        predicate
+    
+    "accumulate procedure"
+    
+        takes a list and an procedure, returns a list of values returned by
+        that procedure on the individual items in the input list
+    
+    "enumerate procedure"
+    
+        procedure generating the list input to the overall process
+    
+    with these procedures, we can represent many processes as:
+    
+        enumerate ->
+            filter ->
+                map
+    
+        or
+    
+        enumerate ->
+            map ->
+            filter
+
+"modular"
+
+    constructed by combining relatively independent pieces
+    library of standard components with a conventional interface
+
+
+    representing structures as sequences, we localize dependencies to sequence
+    operations
+
+    - we can experiment with alternative representations of sequences without
+      changing the overall design of the program
+
+
+Nested Mappings

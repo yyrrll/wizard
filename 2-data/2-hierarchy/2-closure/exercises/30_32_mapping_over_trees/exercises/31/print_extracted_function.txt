@@ -1,0 +1,5 @@
+# concatenate commands extracting functions, send to printer
+
+# example of subshell on commandline
+
+(sed -n '/^(define/,/^$/p' ../../../map.rkt ; echo ""; echo "solution:" ; sed -n '/^(define/,/^$/p' tree-map_31.rkt; echo "solution with if:"; sed -n '/^(define/,/^$/p' 31/tree-map_if.rkt) | lpr -p

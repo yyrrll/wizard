@@ -1,0 +1,1029 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+       "http://www.w3.org/TR/html4/loose.dtd">
+<html><head><title>sicp-ex-2.41</title
+><base href=""><link rel="alternate" type="application/rss+xml" title="RSS" href="http://community.schemewiki.org/?c=rss"><link rel="stylesheet" href="css/default.css" type="text/css"></head
+><body><h1 id="title"><div><a href="http://community.schemewiki.org/?c=s&amp;key=[[sicp-ex-2.41]]">sicp-ex-2.41</a
+></div
+></h1
+><div id="nav"><a href="http://community.schemewiki.org/">[Top Page]</a
+><a href="http://community.schemewiki.org/?c=r">[Recent Changes]</a
+><a href="http://community.schemewiki.org/?c=a">[All Pages]</a
+><a href="http://community.schemewiki.org/?c=settings">[Settings]</a
+><a href="http://community.schemewiki.org/?category-category">[Categories]</a
+><a href="http://community.schemewiki.org/?wiki-howto">[Wiki Howto]</a
+><br><a href="http://community.schemewiki.org/?p=sicp-ex-2.41&amp;c=e">[Edit]</a
+><a href="http://community.schemewiki.org/?p=sicp-ex-2.41&amp;c=h">[Edit History]</a
+><br><form method="POST" action="http://community.schemewiki.org/" style="margin:0pt; padding:0pt"><input type="hidden" name="c" value="s" style="margin:0pt; padding:0pt"><span>Search:<input type="text" name="key" size="10"></span
+></form
+></div
+><hr><p>Wow, that was a very nice solution, even if it went far above and beyond the scope of the exercise in the book. Here is code for anyone here searching for a more concise solution:
+</p
+><pre class="scheme">  
+ <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-8.html#%_idx_190" class="scheme-documentation">define</a
+></span
+> <span class="paren">(ordered-triples-sum n s)</span
+> 
+   <span class="paren">(filter <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_416" class="scheme-documentation">list</a
+>)</span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_254" class="scheme-documentation">=</a
+> <span class="paren">(accumulate <a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_278" class="scheme-documentation">+</a
+> 0 <a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_416" class="scheme-documentation">list</a
+>)</span
+> s)</span
+>)</span
+> 
+          <span class="paren">(flatmap 
+           <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(i)</span
+> 
+             <span class="paren">(flatmap <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(j)</span
+> 
+                  <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_558" class="scheme-documentation">map</a
+></span
+> <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(k)</span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_416" class="scheme-documentation">list</a
+> i j k)</span
+>)</span
+> 
+                       <span class="paren">(enumerate-interval 1 <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_282" class="scheme-documentation">-</a
+> j 1)</span
+>)</span
+>)</span
+>)</span
+> 
+                  <span class="paren">(enumerate-interval 1 <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_282" class="scheme-documentation">-</a
+> i 1)</span
+>)</span
+>)</span
+>)</span
+> 
+             <span class="paren">(enumerate-interval 1 n)</span
+>)</span
+>)</span
+>)</span
+> 
+</pre
+><p>If you are having a hard time understanding this problem, study the above implementation of build-tuples.
+</p
+><div class="comment"><div class="portrait"><p><a href="http://community.schemewiki.org/?HannibalZ">HannibalZ</a
+></p
+></div
+><div class="comment-text"><p>A short note to the answer before: DO NOT USE LIST as your variable name. It is an awful habit. In this case, you cannot use (list ...) since list is your variable.
+ps. you never how long I debug a scheme program when I use list to name one variable...
+ps2. sorry for inserting these words here, but I think everyone should be cautious about this.
+</p
+></div
+><br style="clear: both"></div
+><hr><p><a href="http://community.schemewiki.org/?sicp-ex-2.40">&lt;&lt; Previous exercise (2.40)</a
+>
+| <a href="http://community.schemewiki.org/?sicp-solutions">Index</a
+> |
+<a href="http://community.schemewiki.org/?sicp-ex-2.42">Next exercise (2.42) &gt;&gt;</a
+>
+</p
+><hr><div class="comment"><div class="portrait"><p><a href="http://community.schemewiki.org/?eivanov">eivanov</a
+></p
+></div
+><div class="comment-text"><p>This solution is O(n^2) and a little optimized (doesn't check cases, when there are no triples for given i). For n=s=90 runs 10 times faster, than the one on the top of the page.
+</p
+><pre class="scheme">  
+ <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-8.html#%_idx_190" class="scheme-documentation">define</a
+></span
+> <span class="paren">(find-ordered-triples-sum n s)</span
+> 
+   <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-8.html#%_idx_190" class="scheme-documentation">define</a
+></span
+> <span class="paren">(k-is-distinkt-in-triple? triple)</span
+> 
+     <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_124" class="scheme-documentation">let</a
+></span
+> <span class="paren">(<span class="paren">(i <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_392" class="scheme-documentation">car</a
+> triple)</span
+>)</span
+> 
+           <span class="paren">(j <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_404" class="scheme-documentation">cadr</a
+> triple)</span
+>)</span
+> 
+           <span class="paren">(k <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_392" class="scheme-documentation">car</a
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_396" class="scheme-documentation">cdr</a
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_396" class="scheme-documentation">cdr</a
+> triple)</span
+>)</span
+>)</span
+>)</span
+>)</span
+> 
+       <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_118" class="scheme-documentation">and</a
+></span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_258" class="scheme-documentation">&gt;</a
+> k j)</span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_258" class="scheme-documentation">&gt;</a
+> k i)</span
+>)</span
+>)</span
+>)</span
+> 
+   <span class="paren">(filter k-is-distinkt-in-triple? 
+     <span class="paren">(flatmap 
+       <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(i)</span
+> 
+         <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_558" class="scheme-documentation">map</a
+></span
+> <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(j)</span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_416" class="scheme-documentation">list</a
+> i j <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_282" class="scheme-documentation">-</a
+> n <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_278" class="scheme-documentation">+</a
+> i j)</span
+> )</span
+> )</span
+>)</span
+> 
+              <span class="comment">; j + k = n - i and k and j &gt;= 1 
+</span
+>              <span class="paren">(enumerate <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_278" class="scheme-documentation">+</a
+> i 1)</span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_282" class="scheme-documentation">-</a
+> n <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_278" class="scheme-documentation">+</a
+> i 1)</span
+>)</span
+> )</span
+>)</span
+>)</span
+> 
+       <span class="paren">(enumerate 1 <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_282" class="scheme-documentation">-</a
+> n 2)</span
+>)</span
+>)</span
+>)</span
+>)</span
+> <span class="comment">; n - 2: j and k at least 1 (i_max + 1 + 1 = n) 
+</span
+>  
+</pre
+></div
+><br style="clear: both"></div
+><div class="comment"><div class="portrait"><p><a href="http://community.schemewiki.org/?jz">jz</a
+></p
+></div
+><div class="comment-text"><pre class="scheme">  
+ <span class="comment">;; Supporting functions: 
+</span
+>  
+ <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-8.html#%_idx_190" class="scheme-documentation">define</a
+></span
+> nil <span class="reader-macro"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_88" class="scheme-documentation">'</a
+></span
+><span class="paren">()</span
+>)</span
+> 
+  
+ <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-8.html#%_idx_190" class="scheme-documentation">define</a
+></span
+> <span class="paren">(filter predicate sequence)</span
+> 
+   <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_106" class="scheme-documentation">cond</a
+></span
+> <span class="paren">(<span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_410" class="scheme-documentation">null?</a
+> sequence)</span
+> nil)</span
+> 
+         <span class="paren">(<span class="paren">(predicate <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_392" class="scheme-documentation">car</a
+> sequence)</span
+>)</span
+> 
+          <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_390" class="scheme-documentation">cons</a
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_392" class="scheme-documentation">car</a
+> sequence)</span
+>  
+                <span class="paren">(filter predicate <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_396" class="scheme-documentation">cdr</a
+> sequence)</span
+>)</span
+>)</span
+>)</span
+> 
+         <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_108" class="scheme-documentation">else</a
+></span
+> <span class="paren">(filter predicate <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_396" class="scheme-documentation">cdr</a
+> sequence)</span
+>)</span
+>)</span
+>)</span
+>)</span
+> 
+  
+ <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-8.html#%_idx_190" class="scheme-documentation">define</a
+></span
+> <span class="paren">(accumulate op initial sequence)</span
+> 
+   <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_98" class="scheme-documentation">if</a
+></span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_410" class="scheme-documentation">null?</a
+> sequence)</span
+> 
+       initial 
+       <span class="paren">(op <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_392" class="scheme-documentation">car</a
+> sequence)</span
+> 
+           <span class="paren">(accumulate op initial <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_396" class="scheme-documentation">cdr</a
+> sequence)</span
+>)</span
+>)</span
+>)</span
+>)</span
+> 
+  
+ <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-8.html#%_idx_190" class="scheme-documentation">define</a
+></span
+> <span class="paren">(enumerate-interval low high)</span
+> 
+   <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_98" class="scheme-documentation">if</a
+></span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_258" class="scheme-documentation">&gt;</a
+> low high)</span
+> 
+       nil 
+       <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_390" class="scheme-documentation">cons</a
+> low <span class="paren">(enumerate-interval <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_278" class="scheme-documentation">+</a
+> low 1)</span
+> high)</span
+>)</span
+>)</span
+>)</span
+> 
+  
+  
+ <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-8.html#%_idx_190" class="scheme-documentation">define</a
+></span
+> <span class="paren">(flatmap proc seq)</span
+> 
+   <span class="paren">(accumulate <a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_420" class="scheme-documentation">append</a
+> nil <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_558" class="scheme-documentation">map</a
+></span
+> proc seq)</span
+>)</span
+>)</span
+> 
+  
+ <span class="comment">;; Here's the unique-pairs from the chapter: 
+</span
+> <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-8.html#%_idx_190" class="scheme-documentation">define</a
+></span
+> <span class="paren">(unique-pairs n)</span
+> 
+   <span class="paren">(flatmap <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(i)</span
+> 
+              <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_558" class="scheme-documentation">map</a
+></span
+> <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(j)</span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_416" class="scheme-documentation">list</a
+> i j)</span
+>)</span
+> 
+                   <span class="paren">(enumerate-interval 1 <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_282" class="scheme-documentation">-</a
+> i 1)</span
+>)</span
+>)</span
+>)</span
+> 
+            <span class="paren">(enumerate-interval 1 n)</span
+>)</span
+>)</span
+> 
+  
+  
+ <span class="comment">;; We need to make triples (i j k).  The following will do: 
+</span
+>  
+ <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-8.html#%_idx_190" class="scheme-documentation">define</a
+></span
+> <span class="paren">(unique-triples n)</span
+> 
+   <span class="paren">(flatmap <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(i)</span
+> 
+              <span class="paren">(flatmap <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(j)</span
+> 
+                         <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_558" class="scheme-documentation">map</a
+></span
+> <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(k)</span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_416" class="scheme-documentation">list</a
+> i j k)</span
+>)</span
+> 
+                              <span class="paren">(enumerate-interval 1 <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_282" class="scheme-documentation">-</a
+> j 1)</span
+>)</span
+>)</span
+>)</span
+> 
+                       <span class="paren">(enumerate-interval 1 <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_282" class="scheme-documentation">-</a
+> i 1)</span
+>)</span
+>)</span
+>)</span
+> 
+            <span class="paren">(enumerate-interval 1 n)</span
+>)</span
+>)</span
+> 
+  
+</pre
+><p>Having solved this in an ugly way (without using flatmap), I got to thinking about how to generate tuples of arbitrary size (note that I started thinking about this before I clued into using flatmap, and the ugly function that appeared seemed to suggest a more general approach was required ... so some time wasted).  I wanted to be able to say something like (make-tuple size max-number).  A quick solution (I hope): the lists could be added by adding a number onto a list of arbitrary length, where each number is less than the number to its right (new numbers are added to the front of the list).  By calling this function recursively, lists of arbitrary length can be created.
+</p
+><pre class="scheme">  
+ <span class="comment">;; Code to build tuples of arbitrary length.  Strays from the problem 
+</span
+> <span class="comment">;; stated in the text! 
+</span
+>  
+ <span class="comment">;; Example: (add-num-less-than-first (list 3 4)) will cons the numbers 
+</span
+> <span class="comment">;; 1 and 2 to two new copies of (list 3 4), giving (list 1 3 4) and 
+</span
+> <span class="comment">;; (list 2 3 4).  Note that 1 and 2 are less than 3.  Similarly, 
+</span
+> <span class="comment">;; calling this with (list 7 25) would give 6 new lists, 1 through 6 
+</span
+> <span class="comment">;; appended to copies of (list 7 25). 
+</span
+> <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-8.html#%_idx_190" class="scheme-documentation">define</a
+></span
+> <span class="paren">(add-num-less-than-first tuple)</span
+> 
+   <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_558" class="scheme-documentation">map</a
+></span
+> <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(x)</span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_390" class="scheme-documentation">cons</a
+> x tuple)</span
+>)</span
+> 
+        <span class="paren">(enumerate-interval 1 <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_282" class="scheme-documentation">-</a
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_392" class="scheme-documentation">car</a
+> tuple)</span
+> 1)</span
+>)</span
+>)</span
+>)</span
+> 
+  
+  
+ <span class="comment">;; We need to have the source tuples seeded with at least one number, 
+</span
+> <span class="comment">;; so we'll assume those are present. 
+</span
+> <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-8.html#%_idx_190" class="scheme-documentation">define</a
+></span
+> <span class="paren">(build-tuples seed-tuples count-items-left-to-add)</span
+> 
+   <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_106" class="scheme-documentation">cond</a
+></span
+> <span class="paren">(<span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_254" class="scheme-documentation">=</a
+> count-items-left-to-add 0)</span
+> seed-tuples)</span
+> 
+         <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_108" class="scheme-documentation">else</a
+></span
+>  
+          <span class="paren">(flatmap <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(t)</span
+> 
+                     <span class="paren">(build-tuples <span class="paren">(add-num-less-than-first t)</span
+>  
+                                  <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_282" class="scheme-documentation">-</a
+> count-items-left-to-add 1)</span
+>)</span
+>)</span
+> 
+                    seed-tuples)</span
+>)</span
+>)</span
+>)</span
+> 
+  
+  
+ <span class="comment">;; Building the seed lists through a map, and we have 1 fewer item 
+</span
+> <span class="comment">;; to add to each: 
+</span
+> <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-8.html#%_idx_190" class="scheme-documentation">define</a
+></span
+> <span class="paren">(unique-tuples max-integer item-count)</span
+> 
+   <span class="paren">(build-tuples <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_558" class="scheme-documentation">map</a
+></span
+> <a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_416" class="scheme-documentation">list</a
+> <span class="paren">(enumerate-interval 1 max-integer)</span
+>)</span
+> 
+                <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_282" class="scheme-documentation">-</a
+> item-count 1)</span
+>)</span
+>)</span
+> 
+  
+  
+ <span class="comment">;; Test: 
+</span
+> <span class="paren">(unique-tuples 7 3)</span
+> 
+ <span class="paren">(unique-tuples 3 7)</span
+>   <span class="comment">;; empty set, as expected 
+</span
+> <span class="paren">(unique-tuples 5 5)</span
+>   <span class="comment">;; ((1 2 3 4 5)) 
+</span
+>  
+</pre
+><p>Solving this took me many hours (an embarrassing number), with lots of false starts.  I still think there's a better way to do it, but this will do for now.  Any other ideas?
+</p
+><p>Now that we have this, the rest is easy.  If the permutations are required, we can just use the function given in the chapter.
+</p
+><pre class="scheme">  
+ <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-8.html#%_idx_190" class="scheme-documentation">define</a
+></span
+> <span class="paren">(unique-sets-summing-to-k set-size max-number k)</span
+> 
+   <span class="paren">(filter <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(tuple)</span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_254" class="scheme-documentation">=</a
+> <span class="paren">(accumulate <a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_278" class="scheme-documentation">+</a
+> 0 tuple)</span
+> k)</span
+>)</span
+> 
+           <span class="paren">(make-unique-tuples max-number set-size)</span
+>)</span
+>)</span
+> 
+  
+ <span class="comment">;; Test: 
+</span
+> <span class="paren">(unique-sets-summing-to-k 5 10 21)</span
+> 
+ <span class="paren">(unique-sets-summing-to-k 3 7 10)</span
+> 
+  
+</pre
+><p>Note that this solution is generalized, which a good salaried programmer shouldn't do (unnecessary generalizaion = happy programmer + late project).  However, for my own pain, I decided to do it.
+</p
+></div
+><br style="clear: both"></div
+><div class="comment"><div class="portrait"><p><a href="http://community.schemewiki.org/?mueen">mueen</a
+></p
+></div
+><div class="comment-text"><p>I haven't looked at the first solution in detail.
+</p
+><p>The second solution (right above this comment) is the cleanest and simplest, but has O(n^3) complexity, when the solution can be brought down to O(n^2) by making use of the constraint that they must all add up to s.
+</p
+><p>My solution:
+</p
+><pre class="scheme">  
+ <span class="comment">;; First get all pairs of distinct integers (i,j) that add up to s -  
+</span
+> <span class="comment">;; without permuting (i &lt; j)  
+</span
+> <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-8.html#%_idx_190" class="scheme-documentation">define</a
+></span
+> <span class="paren">(make-pairs n s)</span
+> 
+    <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_558" class="scheme-documentation">map</a
+></span
+> <span class="comment">; Create the list of pairs 
+</span
+>     <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(x)</span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_416" class="scheme-documentation">list</a
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_282" class="scheme-documentation">-</a
+> s x)</span
+> x)</span
+>)</span
+>  
+     <span class="paren">(filter  <span class="comment">; Keep only values such that the other term in the pair is  
+</span
+>              <span class="comment">; smaller than x. 
+</span
+>      <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(x)</span
+> <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_118" class="scheme-documentation">and</a
+></span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_256" class="scheme-documentation">&lt;</a
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_282" class="scheme-documentation">-</a
+> s x)</span
+> x)</span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_258" class="scheme-documentation">&gt;</a
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_282" class="scheme-documentation">-</a
+> s x)</span
+> 0)</span
+>)</span
+>)</span
+> 
+      <span class="paren">(enumerate-interval 2 n)</span
+>)</span
+>)</span
+>)</span
+> 
+  
+ <span class="comment">;; Now do it for triples, making use of the above function. 
+</span
+> <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-8.html#%_idx_190" class="scheme-documentation">define</a
+></span
+> <span class="paren">(make-triple n s)</span
+> 
+   <span class="paren">(flatmap <span class="comment">; Create all permutations. 
+</span
+>    permutations 
+    <span class="paren">(flatmap <span class="comment">; Create the triples by making use of make-pairs. 
+</span
+>     <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(k)</span
+>  
+       <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_558" class="scheme-documentation">map</a
+></span
+> <span class="comment">; Convert each pair to a triple. 
+</span
+>        <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(x)</span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_390" class="scheme-documentation">cons</a
+> k x)</span
+>)</span
+> 
+        <span class="paren">(make-pairs <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_282" class="scheme-documentation">-</a
+> k 1)</span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_282" class="scheme-documentation">-</a
+> s k)</span
+>)</span
+>)</span
+>)</span
+> 
+     <span class="paren">(filter <span class="comment">; Keep only values such that the other terms will be less than x. 
+</span
+>      <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(x)</span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_260" class="scheme-documentation">&lt;=</a
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_282" class="scheme-documentation">-</a
+> s x)</span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_282" class="scheme-documentation">-</a
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_280" class="scheme-documentation">*</a
+> 2 x)</span
+> 3)</span
+>)</span
+>)</span
+> 
+      <span class="paren">(enumerate-interval 3 n)</span
+>)</span
+>)</span
+>)</span
+>)</span
+> 
+ <span class="paren">(make-triple 10 15)</span
+> 
+  
+</pre
+></div
+><br style="clear: both"></div
+><div class="comment"><div class="portrait"><p><a href="http://community.schemewiki.org/?dontbr">dontbr</a
+></p
+></div
+><div class="comment-text"><p>Apologies if there are any similarities between this solution and the others; I've just glanced at the ones above!
+</p
+><pre class="scheme"> <span class="comment">;;; Limiting ourselves to this specific exercise. 
+</span
+>  
+ <span class="comment">;; In accordance to the code reutilization spirit of the book, 
+</span
+> <span class="comment">;; this solution builds on the previous exercise (2.40), given 
+</span
+> <span class="comment">;; below for reference. 
+</span
+> <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-8.html#%_idx_190" class="scheme-documentation">define</a
+></span
+> <span class="paren">(unique-pairs n)</span
+> 
+     <span class="paren">(flatmap <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(i)</span
+> 
+                 <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_558" class="scheme-documentation">map</a
+></span
+> <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(j)</span
+> 
+                         <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_416" class="scheme-documentation">list</a
+> i j)</span
+>)</span
+> 
+                      <span class="paren">(enumerate-interval 1 <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_282" class="scheme-documentation">-</a
+> i 1)</span
+>)</span
+>)</span
+>)</span
+> 
+              <span class="paren">(enumerate-interval 1 n)</span
+>)</span
+>)</span
+> 
+  
+ <span class="comment">;; Let a (k,n)-tuple be an ordered n-tuple whose elements are at 
+</span
+> <span class="comment">;; most k. Then, we build (k,3)-tuples by concatenating 
+</span
+> <span class="comment">;; p = 1,2,3,...,k with (p-1,2)-tuples. 
+</span
+> <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-8.html#%_idx_190" class="scheme-documentation">define</a
+></span
+> <span class="paren">(unique-triples n)</span
+> 
+     <span class="paren">(flatmap <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(k)</span
+> 
+                 <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_558" class="scheme-documentation">map</a
+></span
+> <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(pair)</span
+> 
+                         <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_390" class="scheme-documentation">cons</a
+> k pair)</span
+>)</span
+> 
+                      <span class="paren">(unique-pairs <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_282" class="scheme-documentation">-</a
+> k 1)</span
+>)</span
+>)</span
+>)</span
+> 
+              <span class="paren">(enumerate-interval 1 n)</span
+>)</span
+>)</span
+> 
+  
+ <span class="comment">;; Finally, we run the tuplelist above through a simple filter 
+</span
+> <span class="comment">;; that accumulates/sums the elements of a given tuple and ensures 
+</span
+> <span class="comment">;; the resulting value is the one passed to the procedure. 
+</span
+> <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-8.html#%_idx_190" class="scheme-documentation">define</a
+></span
+> <span class="paren">(unique-triples-that-sum-to value max-element)</span
+> 
+     <span class="paren">(filter <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(triple)</span
+> 
+                 <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_254" class="scheme-documentation">=</a
+> value <span class="paren">(accumulate <a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_278" class="scheme-documentation">+</a
+> 0 triple)</span
+>)</span
+>)</span
+> 
+             <span class="paren">(unique-triples max-element)</span
+>)</span
+>)</span
+> 
+  
+ <span class="comment">;; Examples: 
+</span
+> <span class="paren">(unique-triples 4)</span
+>       <span class="comment">;; =&gt; ((3 2 1) (4 2 1) (4 3 1) (4 3 2)) 
+</span
+> <span class="paren">(unique-triples-that-sum-to 7 4)</span
+> <span class="comment">;; =&gt; ((4 2 1)) 
+</span
+>  
+  
+ <span class="comment">;;; This can readily be generalized to (k,n)-tuples for any  
+</span
+> <span class="comment">;;; given n. 
+</span
+>  
+ <span class="comment">;; Here we create (k,n)-tuples through the following recursion: 
+</span
+> <span class="comment">;; 
+</span
+> <span class="comment">;; 1) We define a (k,1)-tuple to be (k). Thus, if 'order' = 1, 
+</span
+> <span class="comment">;;    we return the tuplelist ((1), (2), ..., (k)); 
+</span
+> <span class="comment">;; 2) Otherwise, we build (k,n)-tuples by concatenating 
+</span
+> <span class="comment">;;    p = 1,2,...k with (p-1,n-1)-tuples. 
+</span
+> <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-8.html#%_idx_190" class="scheme-documentation">define</a
+></span
+> <span class="paren">(unique-tuples order max-element)</span
+> 
+     <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_98" class="scheme-documentation">if</a
+></span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_254" class="scheme-documentation">=</a
+> order 1)</span
+> 
+         <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_558" class="scheme-documentation">map</a
+></span
+> <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(x)</span
+> 
+                 <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_416" class="scheme-documentation">list</a
+> x)</span
+>)</span
+> 
+              <span class="paren">(enumerate-interval 1 max-element)</span
+>)</span
+> 
+         <span class="paren">(flatmap <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(first)</span
+> 
+                     <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_558" class="scheme-documentation">map</a
+></span
+> <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(rest)</span
+> 
+                             <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_390" class="scheme-documentation">cons</a
+> first rest)</span
+>)</span
+> 
+                          <span class="paren">(unique-tuples <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_282" class="scheme-documentation">-</a
+> order 1)</span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_282" class="scheme-documentation">-</a
+> first 1)</span
+>)</span
+>)</span
+>)</span
+> 
+                  <span class="paren">(enumerate-interval 1 max-element)</span
+>)</span
+>)</span
+>)</span
+> 
+  
+ <span class="comment">;; Finally, we define a filter analogously to the one above. 
+</span
+> <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-8.html#%_idx_190" class="scheme-documentation">define</a
+></span
+> <span class="paren">(unique-tuples-that-sum-to value tuple-order max-element)</span
+> 
+     <span class="paren">(filter <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(tuple)</span
+> 
+                 <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_254" class="scheme-documentation">=</a
+> value <span class="paren">(accumulate <a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_278" class="scheme-documentation">+</a
+> 0 tuple)</span
+>)</span
+>)</span
+> 
+             <span class="paren">(unique-tuples tuple-order max-element)</span
+>)</span
+>)</span
+> 
+  
+ <span class="comment">;; Examples: 
+</span
+> <span class="paren">(unique-tuples 6 7)</span
+>  <span class="comment">;; =&gt; ((6 5 4 3 2 1) (7 5 4 3 2 1) ...) 
+</span
+> <span class="paren">(unique-tuples-that-sum-to 22 6 7)</span
+> <span class="comment">;; =&gt; ((7 5 4 3 2 1)) 
+</span
+>  
+ <span class="paren">(unique-tuples 3 4)</span
+>       <span class="comment">;; =&gt; ((3 2 1) (4 2 1) (4 3 1) (4 3 2)) 
+</span
+> <span class="paren">(unique-tuples-that-sum-to 7 3 4)</span
+> <span class="comment">;; =&gt; ((4 2 1)) 
+</span
+></pre
+></div
+><br style="clear: both"></div
+><div class="comment"><div class="portrait"><p><a href="http://community.schemewiki.org/?atrika">atrika</a
+></p
+></div
+><div class="comment-text"><pre class="scheme">  
+ <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-8.html#%_idx_190" class="scheme-documentation">define</a
+></span
+> <span class="paren">(perm n seq)</span
+> 
+   <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_98" class="scheme-documentation">if</a
+></span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_254" class="scheme-documentation">=</a
+> 0 n)</span
+> 
+       <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_416" class="scheme-documentation">list</a
+> <span class="reader-macro"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_88" class="scheme-documentation">'</a
+></span
+><span class="paren">()</span
+>)</span
+> 
+       <span class="paren">(flatmap <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(elem)</span
+>  
+                  <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_558" class="scheme-documentation">map</a
+></span
+> <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(next)</span
+>  
+                         <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_390" class="scheme-documentation">cons</a
+> elem next)</span
+>)</span
+>  
+                       <span class="paren">(perm <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_282" class="scheme-documentation">-</a
+> n 1)</span
+> <span class="paren">(remove elem seq)</span
+>)</span
+>)</span
+>)</span
+> 
+                seq)</span
+>)</span
+>)</span
+> 
+  
+ <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-8.html#%_idx_190" class="scheme-documentation">define</a
+></span
+> <span class="paren">(ordered-trips-that-sum n s)</span
+> 
+   <span class="paren">(filter <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(x)</span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_254" class="scheme-documentation">=</a
+> s <span class="paren">(accumulate <a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_278" class="scheme-documentation">+</a
+> 0 x)</span
+>)</span
+>)</span
+> 
+           <span class="paren">(perm 3 <span class="paren">(enumerate-interval 1 n)</span
+>)</span
+>)</span
+>)</span
+> 
+</pre
+></div
+><br style="clear: both"></div
+><div class="comment"><div class="portrait"><p><a href="http://community.schemewiki.org/?kuan">kuan</a
+></p
+></div
+><div class="comment-text"><p>dontbr<a href="http://community.schemewiki.org/?p=dontbr&amp;c=e">?</a
+>, I think your unique-tuples can be simplified as below code.
+</p
+><pre class="scheme">  
+ <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-8.html#%_idx_190" class="scheme-documentation">define</a
+></span
+> <span class="paren">(unique-tuple size max-number)</span
+> 
+   <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_98" class="scheme-documentation">if</a
+></span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_254" class="scheme-documentation">=</a
+> size 0)</span
+> 
+       <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_416" class="scheme-documentation">list</a
+> <span class="reader-macro"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_88" class="scheme-documentation">'</a
+></span
+><span class="paren">()</span
+>)</span
+> 
+       <span class="paren">(flatmap <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(i)</span
+> 
+                  <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_558" class="scheme-documentation">map</a
+></span
+> <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+> <span class="paren">(t)</span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_390" class="scheme-documentation">cons</a
+> i t)</span
+>)</span
+> 
+                       <span class="paren">(unique-tuple <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_282" class="scheme-documentation">-</a
+> size 1)</span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_282" class="scheme-documentation">-</a
+> i 1)</span
+>)</span
+>)</span
+>)</span
+> 
+                <span class="paren">(enumerate-interval 1 max-number)</span
+>)</span
+>)</span
+>)</span
+> 
+  
+</pre
+></div
+><br style="clear: both"></div
+><div class="comment"><div class="portrait"><p><a href="http://community.schemewiki.org/?Adam">Adam</a
+></p
+></div
+><div class="comment-text"><p>Adds sum to the triple (doesn't do a separate accumulation). 
+</p
+><pre class="scheme">  
+ <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-8.html#%_idx_190" class="scheme-documentation">define</a
+></span
+> <span class="paren">(find-triplets-aggregate n s)</span
+> 
+  
+   <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-8.html#%_idx_190" class="scheme-documentation">define</a
+></span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_218" class="scheme-documentation">equal?</a
+> triplet)</span
+> 
+     <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_254" class="scheme-documentation">=</a
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_404" class="scheme-documentation">cadr</a
+> triplet)</span
+> s)</span
+>)</span
+> 
+  
+   <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-8.html#%_idx_190" class="scheme-documentation">define</a
+></span
+> <span class="paren">(build-triplet-with-sum i j k)</span
+> 
+     <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_416" class="scheme-documentation">list</a
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_416" class="scheme-documentation">list</a
+> i j k)</span
+> <span class="paren">(<a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_278" class="scheme-documentation">+</a
+> i j k)</span
+>)</span
+>)</span
+> 
+  
+   <span class="paren">(flatmap <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+><span class="paren">(k)</span
+> 
+              <span class="paren">(flatmap <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+><span class="paren">(j)</span
+> 
+                         <span class="paren">(filter <a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_218" class="scheme-documentation">equal?</a
+>  
+                                 <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-9.html#%_idx_558" class="scheme-documentation">map</a
+></span
+> <span class="paren">(<span class="keyword"><a href="http://www.schemers.org/Documents/Standards/R5RS/HTML/r5rs-Z-H-7.html#%_idx_96" class="scheme-documentation">lambda</a
+></span
+><span class="paren">(i)</span
+> <span class="paren">(build-triplet-with-sum i j k)</span
+>)</span
+> 
+                                      <span class="paren">(enumerate-interval 1 <span class="paren">(1- j)</span
+>)</span
+>)</span
+>)</span
+>)</span
+> 
+                       <span class="paren">(enumerate-interval 1 <span class="paren">(1- k)</span
+>)</span
+>)</span
+>)</span
+> 
+            <span class="paren">(enumerate-interval 1 n)</span
+>)</span
+>)</span
+> 
+  
+</pre
+></div
+><br style="clear: both"></div
+><hr><div class="footer" style="text-align:right">Last modified : 2018-05-01 02:07:29<br><a href="http://www.shiro.dreamhost.com/scheme/wiliki/wiliki.cgi">WiLiKi 0.5-tekili-7</a
+> running on <a href="http://www.shiro.dreamhost.com/scheme/gauche/">Gauche 0.9</a
+></div
+></body
+></html
+>

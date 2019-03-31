@@ -1,0 +1,9 @@
+Invocation
+
+    ./test-interface.rkt
+
+        or
+
+    racket test-interface.rkt
+
+Successful tests print nothing; output only on failure

@@ -1,0 +1,40 @@
+Code and tests are laid out for re-use through extensions of various exercis
+
+
+Consider code for exercises 56 and 57.
+
+            tree -I *flotsam* -I compiled*
+.
+├── deriv.rkt
+├── ex
+│   ├── 56-exponent
+│   │   ├── deriv.rkt
+│   │   ├── interface.rkt
+│   │   ├── test-deriv.rkt -> ../../test-deriv.rkt
+│   │   ├── test-exponent-deriv.rkt
+│   │   ├── test-exponent-interface.rkt
+│   │   └── test-interface.rkt -> ../../test-interface.rkt
+│   ├── 57-args
+│   │   ├── deriv.rkt -> ../56-exponent/deriv.rkt
+│   │   ├── interface.rkt
+│   │   ├── test-args-deriv.rkt
+│   │   ├── test-args-interface.rkt
+│   │   ├── test-deriv.rkt -> ../../test-deriv.rkt
+│   │   ├── test-exponent-deriv.rkt -> ../56-exponent/test-exponent-deriv.rkt
+│   │   ├── test-exponent-interface.rkt -> ../56-exponent/test-exponent-interface.rkt
+│   │   └── test-interface.rkt -> ../../test-interface.rkt
+├── interface.rkt
+├── subsection.otl
+├── test-deriv.rkt
+└── test-interface.rkt
+
+
+Base code and tests are provided at top directory.
+
+56-exponent/ code re-writes deriv.rkt, and re-uses the initial interface through (require) and (provide).  It re-uses the root tests through symlinks, allowing verification that its extensions do not break prior functionality.  It adds tests of its extensions.
+
+57-args/ re-uses 56-exponent/deriv.rkt entirely through symlink.  It likewise re-uses the root and exponent tests.  It re-uses interface.rkt by (require) and (provide).
+
+This layout seems unduly cluttered to me.  I would rather import the tests somehow and run them against the extended code in the files of the local directory.  My first effort at that failed: importing test suites for re-use seems to run those tests using the code initially imported by the test, rather than the extended code in the same subdirectory.  
+
+

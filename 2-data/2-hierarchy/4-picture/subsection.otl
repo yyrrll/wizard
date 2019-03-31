@@ -1,0 +1,19 @@
+2.2.4 Example: A Picture Language
+
+    "illustrates the power of data abstraction and closure"
+
+    again, important to describe a language's
+        primitives
+        means of combination
+        means of abstraction
+
+        [   nb / q? -- does this apply to "languages" written in python for
+            handling, say, reservations?    ]
+
+
+"painter"
+
+    "draws an image that is shifted and scaled to fit within a designated
+    parallelogram-shaped frame"
+
+    - only element of picture language

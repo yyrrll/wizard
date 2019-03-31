@@ -1,0 +1,91 @@
+2   Building Abstractions with Data
+
+2.2  Hierarchical Data and the Closure Property
+
+2.2.1  Representing Sequences
+
+"sequence"
+
+	"an ordered collection of data objects"
+
+	many ways to represent in terms of pairs
+
+	one way:
+		chain of pairs
+		for each:
+			- first item (<< car >>) is "corresponding item" (ie, data
+			  element / object)
+			- second item ( <<< cdr >>> ) is next pair in chain
+		end of sequence signaled in final pair by second element pointing to nil
+			- nb: nil is "a distinguished value" (?) that is not a pair
+		
+
+"recursive plan"
+
+	"reduction step"
+
+		"length of any list is 1 plus the length of the cdr of the list"
+
+			eg, step describing the construction of the return value
+			- refers to the overall recursive plan
+
+	"base case"
+
+		"the length of the empty list is 0"
+
+			eg, case / condition for an item at which recursion stops
+			- value returned at that halt
+
+
+2.2.2 Hierarchical Structures
+
+    representation of sequences in terms of lists generalizes to sequences
+    whose members are sequences
+
+"tree"
+
+    representation of a sequence of sequences
+
+    -   elements of the sequences are branches of the tree
+
+            [   the branch is a path from the root to the element?
+                because the element can be an item -- in which case it is a
+                leaf -- or a subtree -- in which case it is a root of a subtree
+                ]
+
+    -   elements that are themselves sequences are subtrees
+    
+
+   recursion natural tool for tree structures
+
+   - reduce operations on trees to operations on their branches, reduce further
+     to operations on branches of branches (eg operations on subtrees)
+
+
+<< pair?  >>
+
+    primitive predicate
+    tests whether argument is a pair
+	(nb: often used as if a test whether argument is a list, as lists are comprised of pairs)
+
+	aids implementation of recursive procedures on trees
+
+
+count-leaves example of procedure that requires two base cases
+
+
+NOTES
+
+car cdr abbreviation
+
+"""
+Since nested applications of car and cdr are cumbersome to write, Lisp dialects provide abbreviations for them -- for instance,
+
+    (cadr (arg)) = (car (cdr (arg)))
+
+The names of all such procedures start with c and end with r. Each a between
+them stands for a car operation and each d for a cdr operation, to be applied
+in the same order in which they appear in the name. The names car and cdr
+persist because simple combinations like cadr are pronounceable. 
+
+"""

@@ -1,0 +1,46 @@
+Motivations:
+
+build intuitions 
+-   creating and manipulating structured data ?
+-   extracting data from complex data objects
+-   manipulate compound objects with type and characteristic diversity
+
+    -   object diversity:
+            mobiles
+            branches
+    
+    -   characteristic diversity
+
+            mobiles
+                - branch (left side)
+                - branch (right side)
+    
+            branches
+                - rod length
+                - structure
+    
+            rod length
+                magnitude|integer (cm?)
+    
+            structure
+                mobile or weight
+    
+            weight
+                magnitude|integer (kilos?)
+
+
+
+Learnings:
+
+- clear diagram of data structure very helpful
+- see composition of data structure in several patterns
+    composition of defined objects
+    from primitives
+
+- note solution is "nested recursive"
+    "tautological recursion"?
+
+    total-weight calls branch-weight, passing it each of the mobile's two branchs
+        branch-weight may call total-weight
+
+        recursion not obvious in either, standing alone, but each leads to the other

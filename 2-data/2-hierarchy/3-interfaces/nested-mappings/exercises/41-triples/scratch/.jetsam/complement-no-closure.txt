@@ -1,0 +1,20 @@
+;-(define (permutations s)
+;-  (if (null? s)                    ; empty set?
+;-      (list '())                   ; sequence containing empty set
+;-      (flatmap (lambda (x)
+;-                 (map (lambda (p) (cons x p))
+;-                      (permutations (remove x s))))
+;-               s)))
+
+;   replace in get-complement-pairs signature
+;-(define (get-complement-pairs n whole)
+;-  (if (null? s)                    ; empty set?
+;-      (list '())                   ; sequence containing empty set
+;-      (flatmap (lambda (x)
+;-                 (map (lambda (p) (cons x p))
+;-                      (get-complement-pairs (remove x s))))
+;-               s)))
+
+;   will not work
+;       recursive strategy fails because get-complement-pairs fails closure
+;       it takes two integers, returns a list -- so cannot recursively call itself

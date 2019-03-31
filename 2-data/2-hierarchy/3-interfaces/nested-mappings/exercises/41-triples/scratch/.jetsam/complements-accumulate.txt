@@ -1,0 +1,10 @@
+;-2-;   wrong approach
+;-2-(define (get-complement-pairs n whole)
+;-2-  (accumulate
+;-2-    (lambda
+;-2-      (i)
+;-2-      (get-complement-pair i whole))
+;-2-    '()
+;-2-    (enumerate-interval n whole)
+;-2-        ; use (/ whole 2) as end ?
+;-2-        ))

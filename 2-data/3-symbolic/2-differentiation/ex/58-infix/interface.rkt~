@@ -1,0 +1,47 @@
+#lang racket
+
+(require "../57-args/interface.rkt")
+
+(provide 
+    (all-defined-out)
+    nil
+    filter
+    accumulate
+    variable? 
+    same-variable?
+    =number?
+    make-sum
+    make-product
+    sum?
+    addend
+    augend
+    product?
+    multiplier
+    multiplicand
+    make-exponent
+    base
+    exponent
+    exponentiation?
+)
+
+
+(define (from_infix expr)
+    (if (not (pair? expr))
+        expr
+        (let ((arg1 (from_infix ((car expr))))
+              (operator (caddr expr))
+              (arg2 (from_infix ((caddr expr)))))
+              (if (= operator '+)
+                (make-sum arg1 arg2)
+                (make-product arg1 arg2)))))
+
+
+(require
+  rackunit
+  )
+ 
+
+;   sum -- additional 
+
+(check-equal? (from_infix '(3 + 4)) 7)
+

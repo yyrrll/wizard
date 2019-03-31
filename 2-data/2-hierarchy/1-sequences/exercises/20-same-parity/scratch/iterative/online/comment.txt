@@ -1,0 +1,18 @@
+The top online solution is very similar to mine
+
+- iterative
+- same basic arguments and logic structure
+    as with some of my prior iteratives, passes in an argument tracking the initial parity
+
+- makes use of << remainder >>
+    didn't know about this, not mentioned in book yet
+
+others comment that << append >> is expensive, and it would be better to build the list with cons.  The list built is in reverse order an d and must be reversed before return.
+    this uses << reverse >> for this
+
+    i did use << cons >> in my recursive solution
+    - not clear why that didn't have the reverse problem?
+        but, perhaps avoidable in solution suggested on line
+
+    BUT
+        I am not really interested in this kind of speed optimization in this context

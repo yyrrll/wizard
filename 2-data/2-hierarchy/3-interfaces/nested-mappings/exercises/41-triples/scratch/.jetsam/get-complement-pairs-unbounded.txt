@@ -1,0 +1,59 @@
+; =====================================
+;   get-complement-pairs
+
+;   -------------------------------------
+;   get list of "pairs", each summing to << whole >> and first < second
+;   -   remove get-complement-pair indirection
+
+;   required: same thing, with values starting from n
+
+
+(define (get-complement-pairs whole)
+    (flatmap
+      (lambda (i)
+        (list (list i (- whole i))))
+        (enumerate-interval 1 (/ (- whole 1) 2))
+    ))
+
+;   re: (/ (- whole 1) 2))
+;       "pairs" are ordered unique items
+;       -- for 8, (3 5), but not (5 3), and not (4 4)
+;       thus no need to check values greater than or equal half the whole
+;       --  for 8, enough to go to 3
+;       --  for 9, to 4
+;       when whole is odd, enumerate-interval gets a fraction at top of range, and returns integers less than that
+;       when whole is even, (/ whole 2) places the half in the range
+;       -- not wanted, as pair will be (half, half) and this is not unique
+;       -- (- whole 1) handles this case, removing the even half from the range
+
+;   Nota Bene:
+
+;   - much effort getting the algorithm to return nothing but the expected "pairs"
+;   - better to just generate all the pairs and then filter for conditions?
+
+;   -------------------------------------
+;   test
+
+; document
+;   enumerate interval takes fraction at top end, returns integers less than
+(check-equal?
+  (enumerate-interval 1 9/2)
+  '(1 2 3 4))
+
+(check-equal?
+  (get-complement-pairs 8)
+  '((1 7)
+    (2 6)
+    (3 5)))
+
+(check-equal?
+  (get-complement-pairs 9)
+  '((1 8)
+    (2 7)
+    (3 6)
+    (4 5)))
+
+
+; -------------------------------------
+
+; =====================================

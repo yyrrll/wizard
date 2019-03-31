@@ -1,0 +1,85 @@
+2.3.1 Quotation
+
+lecture9webhand.pdf -- Section 8.1
+? "section" of what?
+
+"Let's first motivate a new data type"
+
+8.1.8
+	'say your favorite color'
+		'blue'
+			gets _meaning_ associated with expression 'your favorite color'
+	
+	'say "your favorite color"'
+		'your favorite color'
+			gets the actual expression 'your favorite color'
+			double quotation marks indicate I want the actual expression
+			- in the first case, wanted value associated with that expression
+			(eg a color rather than a phrase)
+
+	"in many cases we may want to be able to make exactly this distinction,
+	between the value associated with an expression, and the actual symbol or
+	expression itself"
+
+
+8.1.9
+
+	"how do i create symbols as data objects?"
+	already did this with << define >>
+		defined name for a value
+
+		to get value, reference that name (or symbol), interpreter returns
+		associated value
+
+	what if we want reference the symbol itself?
+		that is, distinguish between "your favorite color" and "blue" as the
+		value of (the expression) "your favorite color"
+
+8.1.10
+
+	recall Scheme interpreter operation
+	when expression is submitted for evaluation
+		"the [Scheme] reader converts that expression into an internal form"
+		
+		"the [Scheme] evaluator applies its set of rules to determine"
+		expression value
+
+	here, must tell reader and evaluator we don't want value
+
+	<< quote >>
+
+		special form
+
+		returns value of type symbol "that somehow captures that name"
+		
+		note that << quote >> must be special form because normal evaluation
+		would get the value
+
+8.1.11
+
+	symbol
+
+		think of it as primitive data type
+			no constructor or selectors
+
+		has operations
+
+			predicate << symbol? >> returns true if object is a symbol
+
+			operation <<  eq? >> compares two symbols (and . . . ?_
+
+
+8.1.21
+
+	operation << eq? >> returns true if the arguments are the same object
+
+		"true if the two expressions evaluate to a pointer to the same symbol
+		data structure."
+
+
+? symbol -- object (expression?) naming a value ?
+-	passed to interpreter, returns that value
+-	quoted to interpreter, returns that symbol 
+
+
+

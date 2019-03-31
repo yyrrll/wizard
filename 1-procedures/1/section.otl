@@ -1,0 +1,434 @@
+1.1 The Elements of Programming
+
+programming language mechanisms for combining simple ideas to form more
+complex ideas:
+
+'primitive expressions'
+                    NB: definitions are at start of line in single quotes
+
+    simplest entities
+
+'means of combination'
+    
+    build compound elements from simpler ones
+
+'means of abstraction'
+
+    name compound elements, manipulate as units 
+
+
+'data'
+    
+    informally, "stuff we want to manipulate"
+
+'procedures'
+
+    informally, "descriptions of the rules for manipulating the data"
+
+
+1.1.1 Expressions
+
+'combination'
+
+	an expression 'formed by delimiting a list of expressions within
+	parentheses'
+    - parentheses 'in order to denote procedure application'
+
+'operator'
+
+    - specifies a procedure to be applied to 'arguments
+    - leftmost element in the expression list
+
+'operands'
+
+    - elements of the expression list after the operator
+	- provide values for the << arguments >> to which the operator applies its
+	  procedure
+
+'arguments'
+
+    'values of the operands'
+
+
+    'The value of the combination is obtained by applying the procedure
+    specified by the operator to the arguments that are the values of the
+    operands'
+
+
+'prefix notation'
+
+    convention of placing the operator to the left of the operands
+
+    -   accommodates arbitrary number of arguments
+    -   unambiguous, as operator is always leftmost
+    -   extends easily to nesting combinations
+
+'nested'
+
+    'combinations whose elements are themselves combinations'
+
+
+
+1.1.2 Naming and the Environment
+
+'variable'
+
+    'using names to refer to computational objects. . . '
+
+    'We may say the name identifies a _variable_ whose _value_ is the object'
+
+'define'
+<< define >>
+
+	operator (for lack of a better term, yet) causing the interpreter to
+	associate a value with a name
+
+    - (define size 2) associates value '2' with name 'size'
+
+    discussion:
+
+        simplest means of abstraction, because allows names to refer results of
+        compound operations
+
+            avoids inconvenience of remembering and repeating details of
+            computational objects on every usage
+
+		'complex programs are constructed by building, step by step,
+		computational objects of increasing complexity'
+        
+'environment'
+
+	memory, maintained by interpreter, that tracks name-object pairs
+	(supporting variables / association of values with symbols for retrieval)
+
+    - also 'global environment'
+        computation may involve a number of environments
+
+'environment'
+
+    'global environment'
+
+	'the interpreter must maintain some sort of memory that keeps track of the
+	name- object pairs. This memory is called the _environment_ (more
+	precisely the _global_ _environment_)'
+
+	- 'global' because 'we will see later that a computation may involve a
+	number of different environments'
+
+
+1.1.3 Evaluating Combinations
+
+General Evaluation Rule
+
+    To evaluate a combination:
+
+    1.  Evaluate the subexpressions of the combination
+
+    2.  Apply the procedure that is the value of the leftmost subexpression
+        (the operator) to the arguments that are the values of the other
+        subexpressions (the operands)
+
+    points:
+
+    I   recursive in nature
+    II  repetition of step #1 arrives at point of evaluating primitive expressions
+
+I   recursive nature
+
+'recursive'
+
+    includes as one of its steps the need to invoke itself
+
+'tree'
+
+    graph representing a process as a hierarchy of nodes
+    - each combination represented by a node
+		- nodes have branches corresponding to combination's operator and
+		operands 
+        - if a branch is itself a combination, that is represented by a node
+	- terminal nodes -- nodes with no branches stemming -- represent operators
+	  or numbers [or values]
+
+
+'tree accumulation'
+
+    - general kind of process 
+	- exemplified by ''percolate values upward' [from terminal nodes] form of
+	  the evaluation rule
+
+II  evaluation of primitives
+
+'primitive expression'
+
+    numerals, built-in operators, other names
+
+
+Primitive Evaluation Rule
+
+    1   Numerals -- Values are the numbers they name
+
+    2   Built-In Operators -- Values are the machine instruction sequences
+        carrying out corresponding operations
+
+    3   Other Names -- Values are objects associated with those names in the
+        environment
+
+	- #2 special case of #3, as symbols like << + >> are in the global
+	  environment
+
+	- notice role of environment in determining meaning of symbols
+	- notice primitive evaluation does not handle << define >>
+		-   special form
+
+
+            define expression is 'special form'
+			-   the whole point of << define >> is assignment of one
+			    expression to another, not combination of the expressions
+            
+            instead we:
+            -   evaluate last subexpression
+			-   pair name (w/o evaluation) with subexpression value in
+				'environment'
+
+                -   eg big table pairing names and values
+            
+            value returned by << define >> is generally unspecified
+            
+            by naming a complex expression we can now treat it as a primitive
+
+'special forms' -- lisp
+
+    - exceptions to the [lisp] general evaluation rule
+        - eg, definitions / << define >>
+    -   does not follow general evaluation rule 
+    -   each has its own evaluation rule
+
+syntax
+
+	 'The various kinds of expressions (each with its associated evaluation
+	 rule) constitute the syntax of the programming language'
+
+
+1.1.4 Compound Procedures
+
+'procedure definitions'
+    - give a compound operation a name
+        referenceable as a unit
+    - 'much more powerful abstraction technique'
+    - procedures created can be used in other procedures
+
+    general form of procedure definition in lisp
+
+        (define (<name> <formal parameters>)
+            <body>)
+
+        - <name> -- symbol associated with definition in environment
+        - <formal parameters> -- names used within procedure
+		- <body> expression that yields value when formal parameters are
+		replaced by arguments to which procedure is applied
+
+        note: two operations here -- creating procedure, and giving it a name
+        - important to be able to separate these operations -- see 1.3.2
+
+
+1.1.5 The Substitution Model for Procedure Application
+
+TODO -- have not reviewed notes or text highlightings past this point
+
+'substitution model'
+
+	evaluate the body of the procedure with each formal parameter replaced by
+	the corresponding argument (yes?)
+
+    replace and evaluate
+
+	substitution model only the first of a series of models of how the
+	interpreter works
+    - a way to get started thinking formally about the evaluation process. 
+    - will extend to handle more complicated cases
+
+    substitution model breaks down with 'mutable data'
+        eg object oriented programming
+
+'applicative-order evaluation'
+
+    evaluation method
+    'evaluate the arguments and then apply'
+    method actually used by interpreter
+
+'normal-order evaluation'
+    'fully expand and then reduce'
+
+
+1.1.6 Conditional Expressions and Predicates
+
+case analysis
+
+    construct for determining value based on rule examining conditions
+
+<< cond >>
+'cond'
+
+    special form for case analysis / conditionals
+
+    (define (abs x)
+        (cond ((> x 0) x)
+              ((= x 0) 0)
+              ((< x 0) (- x))))
+    
+    general form
+
+        (cond (<p1> <e1>)
+              (<p2> <e2>)
+              (<pn> <en>))
+
+        first expression in each pair is a _predicate_
+
+        pairs are evaluated in order
+        - when the predicate is true, the paired value is returned
+            - and, evaluation of pairs stops
+        - if no predicate is true, value of << cond >> is undefined
+
+    << else >>
+
+
+    (define (abs x)
+        (cond ((< x 0) (- x))
+              (else x)))
+        
+'predicate' -- lisp
+<< predicate >>
+
+    expression whose value is interpreted as true or false
+    - #t and #f
+    - all values not #f are true
+
+<< if >>
+'if'
+    
+    special form
+    restricted type of conditional usable when precisely two cases
+
+    general form
+
+        (if <predicate> <consequent> <alternative>)
+
+primitive predicates for comparison  -- lisp
+'comparison predicates' / 'comparison operators'?
+
+    < = >
+
+'logical composition procedures'
+<< and >>
+'and'
+<< or >>
+'or'
+<< not >>
+'not'
+
+    and or not
+
+        << and >>
+            special form -- not all subexpressions are necessarily evaluated
+
+        << or >>
+            special form -- not all subexpressions are necessarily evaluated
+
+        << not >>
+            ordinary procedure
+
+
+1.1.7 Example: Square Roots by Newton's Method
+
+'declarative knowledge'
+
+    'what is' description of a thing
+    'square root of x is y such that y >= 0 and y squared = x'
+    - this defines 'square root' but does not explain how to find it
+
+
+'imperative knowledge'
+
+    how to descriptions
+    - tells us how to find a value, eg, how to compute square roots
+
+
+Newton's method of successive approximations
+
+    procedure for finding square root
+    - particular case of his method for finding roots, see chapter 4
+
+	whenever we have a guess y for the value of the square root of a number x,
+	we can get a guess closer to the actual value by averaging y with x/y
+
+
+1.1.8 Procedures as Black-Box Abstractions
+
+'recursive' ( repetitive? )
+
+    procedure defined in terms of itself
+
+'procedural abstraction'
+
+    an abstraction of a procedure
+	- any procedure / implementation that accomplishes the purpose of the
+	  expression using the procedure will do
+
+'local names'
+
+    parameter names of a procedure must be local to the body of the procedure
+    - the choice of names for formal parameters should not matter
+        such names should be reusable in different procedures
+	'the meaning of the procedure should be independent of the parameter names
+	used by its author'
+
+'block structure'
+
+    nesting of definitions within a procedure body 
+    allows a procedure to have internal definitions local to that procedure
+	- << sqrt >> can have internal procedure << good-enough? >>, while other
+	  procedures can have internal procedures of the same name
+
+'lexical scoping'
+
+    allows re-use of procedure arguments by the procedure's internal definitions
+	- if << sqrt >> has formal parameter << x >>, an internal procedure will
+	  have access to << x >> without restating it as a formal parameter of that
+	  internal procedure
+
+    or:
+
+		'lexical scoping dictates that free variables are taken to refer to
+		bindings made by enclosing procedure definitions'
+
+    or:
+
+		'[free variables] are looked up in the environment in which the
+		proceure was defined'
+
+    see chapter 3 for more
+
+
+
+NOTES
+
+syntactic sugar
+
+	'Special syntactic forms that are simply convenient alternative surface
+	structures for things that can be written in more uniform ways are
+	sometimes called syntactic sugar'
+    - coined by Peter Landin. 
+    - BUT: many ``convenient'' syntactic constructs, which make the language
+      less uniform, end up causing more trouble than they are worth when
+      programs become large and complex.  
+        Alan Perlis: ``Syntactic sugar causes cancer of the semicolon.''
+
+
+
+exercise_detect-evaluation-applicative-or-normal.txt
+
+UNLOCATED:
+
+'evaluation rule'
+
+    procedure for evaluating combinations

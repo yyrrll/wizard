@@ -1,0 +1,62 @@
+This debug would have helped understand the failure of take-4:
+
+"take-4-fails.rkt"> ,trace deep-reverse
+"take-4-fails.rkt"> ,trace append-debug
+"take-4-fails.rkt"> (deep-reverse x)
+>(deep-reverse '(7 8 9))
+> (deep-reverse '(8 9))
+> >(deep-reverse '(9))
+> > (deep-reverse '())
+< < '()
+> > (deep-reverse 9)
+< < 9
+> >(append-debug '() 9)
+< <9
+> >(deep-reverse 8)
+< <8
+> (append-debug 9 8)
+; append: contract violation
+;   expected: list?
+;   given: 9
+; [,bt for context]
+"take-4-fails.rkt"> (append 9 8)
+; append: contract violation
+;   expected: list?
+;   given: 9
+; [,bt for context]
+
+
+problem here is that (deep-reverse '(9)) returns << 9 >>, when code requires '(9)
+--  this happens subtly, when the call breaks up '(9) into first and second objects
+        -- to be passed, after deep-reversing, in reverse order to << append >>
+    -- these are, respectively, 9 and '()
+    -- this means that procedure arrives at (append (d-r '()) (d-r 9))
+        -- when (d-r integer) returns that integer, this means that append returns 9
+            -- because (append '() 9) returns 9
+-- thus (d-r '(8 9)) ultimately passes 9 to append as its first argument -- which is the contract violation
+
+the fix, wrapping the first item of the list in reversal in << list >>, prevents this
+    -- BUT: when the first item is itself a list, why doesn't this make that argument a list of lists?
+        -- perhaps because (d-r '((1 3))) decomposes into first object '(1 3) and second '()
+            -- it thus ultimately calls (append (d-r '()) (d-r '(1 3)))
+                the second append argument becomes '(3 1), the first the empty list
+                -- and (append '() [some_list]) return [some_list]
+
+the fix thus depends on the fact that << append >> returns the second item, integer or list, when the first item is the empty list
+
+
+-- TODO: clarify this -- doesn't seem right
+
+        fix is in second argument to append -- which is put into a list
+
+
+COMMENT:
+
+- must pass << append >> through << append-debug >>
+    errors when you try to trace "module-required identifier"
+
+this is not super easy to read -- must better understand prompts and indentations -- but shows the attempt to append 8 to 9, and that this is done within (deep-reverse '(8 9))
+
+-- that is the top "open" call on deep-reverse before the error
+-- there are other deep-reverse calls after that, and before the error, but these are marked by "> > ", rather than "> " -- apparently, indicating that they are called by that "> " call
+--  notice that each of these has a valid return, also prefixed by "> > "

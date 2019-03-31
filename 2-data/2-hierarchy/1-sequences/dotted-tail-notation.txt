@@ -1,0 +1,14 @@
+Designating arguments with a dot << . >> passes all arguments following (an arbitrary number) to a list, held in the argument after the dot
+
+    (define (same-parity . items) . . . 
+
+        means that all arguments to << same-parity >> are passed to the list << items >>
+
+        so after
+
+            (same-parity 1 2 3)
+
+                << items >> has the value '(1 2 3)
+
+
+arguments before the dot are assigned as usual

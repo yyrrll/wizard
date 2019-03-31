@@ -1,0 +1,127 @@
+Exercise 2.55.  Eva Lu Ator types to the interpreter the expression
+
+(car ''abracadabra)
+
+To her surprise, the interpreter prints back quote. Explain. 
+
+ANSWER
+The object passed to << car >> is / can-be-interpreted-as a list, whose first
+item is 'quote.
+
+All Scheme expressions (? yes?) can be intepreted as a list.  Thus car will
+return the first item of the object, as if a list, passed to it.
+
+That object (the second item
+of this expression), as a list, is ''abracadabra.  As a list, this has two items.
+First, << ' >>, or, << (quote quote) >>; second, << (quote abracabra) >>.  
+
+Thus, when << car >> is evaluated, the interpreter reads the object as a list
+and returns its first item -- again, << (quote quote) >>, or << 'quote >>.
+
+
+See below for detail / elaborated decomposition / analysis of the object as a list.
+
+note that 
+
+    (cdr ''abracadabra)
+
+returns
+
+    '(abracadabra)
+
+        that is, the list containing << abracadabra >>
+
+
+DECOMPOSITION / ANALYSIS TO LIST
+
+see note 33, re << (quote) >>
+
+"special form quote, which serves the same purpose as the quotation mark"
+
+"The quotation mark is just a single-character abbreviation for wrapping the next complete expression with quote to form (quote <expression>)."
+
+"This ... maintains the principle that any expression seen by the interpreter can be manipulated as a data object."
+
+"we could construct the expression (car '(a b c)), which is the same as (car (quote (a b c))), by evaluating (list 'car (list 'quote '(a b c))). "
+
+
+these are the same:
+    (car '(a b c))
+    (car (quote (a b c)))
+    (list 'car (list 'quote '(a b c)))
+        (list (quote car) (list (quote quote) '(a b c)))
+
+    ? but
+        first two return << 'a >>
+        second two return << '(car '(a b c)) >>
+
+        however -- 
+
+            (eval (list 'car (list 'quote '(a b c))))
+
+                _does_ return << 'a >>
+
+                << eval >> not mentioned until chapter 4.1.1
+
+
+
+(car ''abracadabra)
+'quote
+> (car (quote 'abracadabra))
+'quote
+> (car (quote (quote abracadabra)))
+'quote
+
+(list 'car (list 'quote '(abracdabra)))
+
+
+(car (quote (quote abracadabra)))
+'quote
+
+> (list 'car (list 'quote (quote 'abracdabra)))
+'(car ''abracdabra)
+> (eval (list 'car (list 'quote (quote 'abracdabra))))
+'quote
+
+> (list 'car (list 'quote (quote (quote abracdabra))))
+'(car ''abracdabra)
+> (eval (list 'car (list 'quote (quote (quote abracdabra)))))
+'quote
+
+> (quote quote)
+'quote
+
+> (eval (list (quote car) (list (quote quote) (quote (quote abracdabra)))))
+'quote
+
+> (list (quote car) (list (quote quote) (quote (quote abracdabra))))
+'(car ''abracdabra)
+
+
+
+The expression 
+
+    '(car ''abracdabra)
+
+is returned by the expression:
+
+
+    (list (quote car) (list (quote quote) (quote (quote abracdabra))))
+
+
+So the initial expression is manipulable as data object (? _is_ a data object?)
+- as if it _was_ a data object
+    (? data objects are always lists?)
+
+- thus, it can be viewed as the list of:
+    the quote of car
+    another list, of
+        the quote of quote, and 
+        the quote of the quote of the string
+        
+thus, within << '(car ''abracdabra) >>, the subexpression << ''abracadabra >> can be viewed as a list, containing two items.  The first, the quote of quote; the second the quote of the string abracadabra
+
+ (list (quote quote) (quote abracdabra))
+ ''abracdabra
+
+and, the << car >> of that list is << (quote quote) >> -- or, 'quote
